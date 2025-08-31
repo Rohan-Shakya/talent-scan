@@ -31,8 +31,8 @@ const LocaleSwitcher = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="en">English</SelectItem>
-        <SelectItem value="de">Deutsch</SelectItem> {/* German */}
-        <SelectItem value="fr">Français</SelectItem> {/* French */}
+        <SelectItem value="de">Deutsch</SelectItem>
+        <SelectItem value="fr">Français</SelectItem>
       </SelectContent>
     </Select>
   );

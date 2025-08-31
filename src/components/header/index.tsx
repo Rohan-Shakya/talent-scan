@@ -11,7 +11,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
         <Link href="/" aria-label="Talent Scan">
-          <h1 className="text-2xl font-bold text-primary tracking-tight">
+          <h1 className="text-2xl font-bold text-primary dark:text-white tracking-tight">
             Talent Scan
           </h1>
         </Link>

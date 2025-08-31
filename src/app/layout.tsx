@@ -4,8 +4,6 @@ import Script from "next/script";
 import { MainProvider } from "@/components/providers/main-provider";
 import { AUTHOR_URL, BASE_URL } from "@/lib/const";
 import "./globals.css";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 
 const poppins = Poppins({
   weight: ["400", "500", "600"],
@@ -83,7 +81,6 @@ export const viewport: Viewport = {
   width: "device-width",
 };
 
-// ---------- JSON-LD builders ----------
 const webPageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
@@ -227,15 +224,8 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body className={`${poppins.className} dark:bg-neutral-900 antialiased`}>
-        <MainProvider>
-          <div className="flex min-h-screen flex-col bg-background text-foreground">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-        </MainProvider>
-
+      <body className={`${poppins.className} dark:bg-background antialiased`}>
+        <MainProvider>{children}</MainProvider>
         <Script
           id="jsonld-aggregate"
           type="application/ld+json"
