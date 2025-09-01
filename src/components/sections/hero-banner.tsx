@@ -27,7 +27,7 @@ const stagger: Variants = {
   },
 };
 
-export default function HeroBanner() {
+export const HeroBanner = () => {
   const reduce = useReducedMotion();
 
   return (
@@ -140,4 +140,4 @@ export default function HeroBanner() {
       </div>
     </motion.section>
   );
-}
+};

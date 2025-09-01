@@ -53,7 +53,7 @@ const CARDS: Card[] = [
   },
 ];
 
-export default function ProjectHighlights() {
+export const ProjectHighlights = () => {
   return (
     <motion.section
       id="features"
@@ -102,7 +102,7 @@ export default function ProjectHighlights() {
       </div>
     </motion.section>
   );
-}
+};
 
 function MotionCard({ title, desc, Icon, i }: Card & { i: number }) {
   return (

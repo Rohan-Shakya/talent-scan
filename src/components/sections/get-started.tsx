@@ -10,7 +10,7 @@ import {
   type Transition,
 } from "framer-motion";
 
-const GetStarted = () => {
+export const GetStarted = () => {
   const prefersReduced = useReducedMotion();
 
   const easeOut: Transition["ease"] = [0.16, 1, 0.3, 1];
@@ -342,5 +342,3 @@ const GetStarted = () => {
     </MotionConfig>
   );
 };
-
-export default GetStarted;

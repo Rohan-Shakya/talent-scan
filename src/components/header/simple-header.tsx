@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import LocaleSwitcher from "./locale-switcher";
+import { LocaleSwitcher } from "./locale-switcher";
 
-const SimpleHeader = () => {
+export const SimpleHeader = () => {
   return (
     <header dir="ltr" className="w-full flex justify-between items-center mb-6">
       <Link href="/">
@@ -37,5 +37,3 @@ const SimpleHeader = () => {
     </header>
   );
 };
-
-export default SimpleHeader;

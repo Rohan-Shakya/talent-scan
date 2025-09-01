@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   UploadIcon,
@@ -14,7 +15,6 @@ import {
   AlertTriangleIcon,
 } from "lucide-react";
 import DefaultLayout from "@/components/layouts/default-layout";
-import Image from "next/image";
 
 type AnalysisResponse = {
   id: string;

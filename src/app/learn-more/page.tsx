@@ -1,6 +1,6 @@
-import MinimalLayout from "@/components/layouts/minimal-layout";
-import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+import { ArrowRightIcon } from "lucide-react";
+import MinimalLayout from "@/components/layouts/minimal-layout";
 
 const LearnMore = () => {
   return (
@@ -360,8 +360,8 @@ const insights = analysis.getInsights();`}
                 Your Data is Safe
               </h3>
               <p className="text-lg text-body-text leading-relaxed">
-                We understand that resume data is highly sensitive. That&apos;s why
-                Talent-Scan is built with privacy-first principles, ensuring
+                We understand that resume data is highly sensitive. That&apos;s
+                why Talent-Scan is built with privacy-first principles, ensuring
                 your data remains completely secure and under your control.
               </p>
             </section>

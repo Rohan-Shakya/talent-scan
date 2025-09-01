@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { motion, Variants } from "framer-motion";
 import {
@@ -36,7 +37,6 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import Link from "next/link";
 
 type MultiLangMap = Record<
   string,

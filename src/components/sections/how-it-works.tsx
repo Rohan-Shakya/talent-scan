@@ -69,7 +69,7 @@ const STEPS: Step[] = [
   },
 ];
 
-export default function HowItWorks() {
+export const HowItWorks = () => {
   return (
     <motion.section
       id="how-it-works"
@@ -103,7 +103,7 @@ export default function HowItWorks() {
       </div>
     </motion.section>
   );
-}
+};
 
 function StepCard({ n, title, desc, isLast }: Step & { isLast?: boolean }) {
   return (
