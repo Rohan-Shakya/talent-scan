@@ -12,7 +12,7 @@ import {
   type Transition,
 } from "framer-motion";
 
-const ScrollTopButton = () => {
+export const ScrollTopButton = () => {
   const [isShown, setIsShown] = useState(false);
   const { scrollY } = useScroll();
   const prefersReduced = useReducedMotion();
@@ -78,5 +78,3 @@ const ScrollTopButton = () => {
     </MotionConfig>
   );
 };
-
-export default ScrollTopButton;

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import SimpleHeader from "../header/simple-header";
+import { SimpleHeader } from "../header/simple-header";
 
 const MinimalLayout = ({ children }: { children: ReactNode }) => {
   return (

@@ -38,7 +38,7 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-export default function ProjectFaqs() {
+export const ProjectFaqs = () => {
   const prefersReducedMotion = useReducedMotion();
   const easeOut = cubicBezier(0.16, 1, 0.3, 1);
   const floatY = prefersReducedMotion ? 0 : [0, -8, 0];
@@ -145,4 +145,4 @@ export default function ProjectFaqs() {
       </div>
     </section>
   );
-}
+};

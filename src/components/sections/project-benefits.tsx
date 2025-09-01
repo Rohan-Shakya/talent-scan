@@ -66,7 +66,7 @@ const BENEFITS: Benefit[] = [
   },
 ];
 
-export default function ProjectBenefits() {
+export const ProjectBenefits = () => {
   return (
     <motion.section
       id="benefits"
@@ -295,7 +295,7 @@ export default function ProjectBenefits() {
       </div>
     </motion.section>
   );
-}
+};
 
 function BenefitItem({ title, desc }: Benefit) {
   return (

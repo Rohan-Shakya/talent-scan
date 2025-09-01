@@ -11,13 +11,13 @@ import {
   CircleQuestionMarkIcon,
   CirclePlayIcon,
 } from "lucide-react";
-import ScrollTopButton from "./scroll-top-button";
 import {
   motion,
   MotionConfig,
   type Variants,
   type Transition,
 } from "framer-motion";
+import { ScrollTopButton } from "./scroll-top-button";
 
 const easeOut: Transition["ease"] = [0.16, 1, 0.3, 1];
 
@@ -49,7 +49,7 @@ const itemHover: Variants = {
   tap: { scale: 0.98, transition: { duration: 0.15, ease: easeOut } },
 };
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <MotionConfig reducedMotion="user">
       <motion.footer
@@ -233,7 +233,7 @@ const Footer = () => {
           >
             <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
               <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-6 text-caption text-sm">
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col min-[400px]:flex-row items-center space-x-2">
                   <span>© 2025 Talent Scan</span>
                   <span className="text-caption/60">•</span>
                   <span className="text-caption/80">
@@ -249,5 +249,3 @@ const Footer = () => {
     </MotionConfig>
   );
 };
-
-export default Footer;

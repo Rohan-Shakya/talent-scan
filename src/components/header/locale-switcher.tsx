@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -9,33 +9,47 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const LocaleSwitcher = () => {
-  const [language, setLanguage] = useState("en");
+type Props = { className?: string };
 
-  useEffect(() => {
-    const savedLang = localStorage.getItem("lang");
-    if (savedLang) {
-      setLanguage(savedLang);
-    }
-  }, []);
+const LANG = {
+  en: { label: "English", flag: "🇺🇸" },
+  de: { label: "Deutsch", flag: "🇩🇪" },
+  fr: { label: "Français", flag: "🇫🇷" },
+} as const;
 
-  const handleLanguageChange = (value: string) => {
+type LangKey = keyof typeof LANG;
+
+function getInitialLang(): LangKey {
+  if (typeof window === "undefined") return "en";
+  const saved = localStorage.getItem("talent-scan:lang");
+  return saved && saved in LANG ? (saved as LangKey) : "en";
+}
+
+export const LocaleSwitcher = ({ className }: Props) => {
+  const [language, setLanguage] = useState<LangKey>(getInitialLang);
+
+  const onChange = (value: LangKey) => {
     setLanguage(value);
-    localStorage.setItem("lang", value);
+    if (typeof window !== "undefined")
+      localStorage.setItem("talent-scan:lang", value);
   };
 
   return (
-    <Select value={language} onValueChange={handleLanguageChange}>
-      <SelectTrigger className="w-[200px]">
-        <SelectValue placeholder="Language" />
+    <Select value={language} onValueChange={onChange}>
+      <SelectTrigger className={`w-[200px] ${className ?? ""}`}>
+        <SelectValue aria-label={LANG[language].label} />
       </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="en">English</SelectItem>
-        <SelectItem value="de">Deutsch</SelectItem>
-        <SelectItem value="fr">Français</SelectItem>
+
+      <SelectContent className="rounded-xl">
+        {Object.entries(LANG).map(([value, meta]) => (
+          <SelectItem key={value} value={value} className="py-2">
+            <div className="flex items-center gap-3">
+              <span className="text-xl leading-none">{meta.flag}</span>
+              <span className="text-base">{meta.label}</span>
+            </div>
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );
 };
-
-export default LocaleSwitcher;
