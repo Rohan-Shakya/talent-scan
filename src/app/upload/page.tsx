@@ -15,6 +15,7 @@ import {
   AlertTriangleIcon,
 } from "lucide-react";
 import DefaultLayout from "@/components/layouts/default-layout";
+import type { Options as ConfettiOptions } from "canvas-confetti";
 
 type AnalysisResponse = {
   id: string;
@@ -108,62 +109,116 @@ export default function UploadPage() {
   const [pct, setPct] = React.useState(0);
   const [result, setResult] = React.useState<AnalysisResponse | null>(null);
   const [error, setError] = React.useState<string | null>(null);
+  const abortRef = React.useRef<AbortController | null>(null);
+  const timerRef = React.useRef<number | null>(null);
 
-  async function analyze(f: File) {
-    setError(null);
-    setModalOpen(true);
-    setStage("parse");
-    setPct(18);
+  const startProgress = React.useCallback(() => {
+    if (timerRef.current != null) return;
+    timerRef.current = window.setInterval(() => {
+      setPct((p) => (p >= 95 ? p : Math.min(p + 1, 95)));
+    }, 50);
+  }, []);
 
-    const fd = new FormData();
-    fd.append("file", f);
-
-    try {
-      const r = await fetch("/api/analyze", { method: "POST", body: fd });
-      setStage("ai");
-      setPct(48);
-
-      const raw: unknown = await r.json();
-
-      setStage("report");
-      setPct(86);
-
-      if (!r.ok) {
-        const errMsg =
-          (raw as { error?: string } | null)?.error || "Unexpected error";
-        throw new Error(errMsg);
-      }
-
-      const json = raw as AnalysisResponse;
-
-      const saved = persistToHistory(f, json);
-      setResult(saved);
-      setPct(100);
-      setStage("done");
-      setTimeout(() => setModalOpen(false), 650);
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Failed to analyze";
-      setError(msg);
-      setModalOpen(false);
-      setStage("idle");
-      setPct(0);
+  const stopProgress = React.useCallback(() => {
+    if (timerRef.current != null) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-  }
+  }, []);
 
-  function onFile(f: File) {
-    setFile(f);
-    setResult(null);
-    setError(null);
-    analyze(f);
-  }
+  const blastConfetti = React.useCallback(async () => {
+    const mod = await import("canvas-confetti");
+    const confetti = mod.default;
+    const base = 140;
+    const fire = (ratio: number, opts: ConfettiOptions = {}) =>
+      confetti({
+        particleCount: Math.floor(base * ratio),
+        spread: 70,
+        origin: { y: 0.6 },
+        ...opts,
+      });
+    fire(0.25, { startVelocity: 45 });
+    fire(0.2, {});
+    fire(0.35, { decay: 0.91, scalar: 1.05 });
+    fire(0.2, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+  }, []);
 
-  function clearAll() {
+  const clearAll = React.useCallback(() => {
+    stopProgress();
+    abortRef.current?.abort();
+    abortRef.current = null;
     setStage("idle");
     setPct(0);
     setResult(null);
     setFile(null);
     setError(null);
-  }
+    setModalOpen(false);
+  }, [stopProgress]);
+
+  const onCancel = React.useCallback(() => {
+    clearAll();
+  }, [clearAll]);
+
+  const analyze = React.useCallback(
+    async (f: File) => {
+      setError(null);
+      setModalOpen(true);
+      setStage("parse");
+      setPct(0);
+      startProgress();
+      const fd = new FormData();
+      fd.append("file", f);
+      const ctrl = new AbortController();
+      abortRef.current = ctrl;
+      try {
+        const r = await fetch("/api/analyze", {
+          method: "POST",
+          body: fd,
+          signal: ctrl.signal,
+        });
+        setStage("ai");
+        const raw: unknown = await r.json();
+        setStage("report");
+        if (!r.ok) {
+          const errMsg =
+            (raw as { error?: string } | null)?.error || "Unexpected error";
+          throw new Error(errMsg);
+        }
+        const json = raw as AnalysisResponse;
+        const saved = persistToHistory(f, json);
+        setResult(saved);
+        stopProgress();
+        setPct(100);
+        setStage("done");
+        blastConfetti();
+        setTimeout(() => setModalOpen(false), 650);
+      } catch (e: unknown) {
+        if (e instanceof DOMException && e.name === "AbortError") return;
+        stopProgress();
+        setError(e instanceof Error ? e.message : "Failed to analyze");
+        setModalOpen(false);
+        setStage("idle");
+        setPct(0);
+      } finally {
+        abortRef.current = null;
+      }
+    },
+    [blastConfetti, startProgress, stopProgress]
+  );
+
+  const onFile = React.useCallback(
+    (f: File) => {
+      setFile(f);
+      setResult(null);
+      setError(null);
+      analyze(f);
+    },
+    [analyze]
+  );
+
+  React.useEffect(() => {
+    if (!modalOpen) stopProgress();
+  }, [modalOpen, stopProgress]);
 
   return (
     <DefaultLayout>
@@ -172,7 +227,7 @@ export default function UploadPage() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.25 }}
       >
-        <div className="py-10">
+        <div className="py-10 md:py-16">
           <HeaderHero />
           <div className="mx-auto max-w-6xl px-5">
             <UploadSection
@@ -182,13 +237,11 @@ export default function UploadPage() {
               setDrag={setDrag}
               onFile={onFile}
             />
-
             <AnimatePresence initial={false} mode="popLayout">
               {!!file && (
                 <UploadedCard key={file.name} file={file} onClear={clearAll} />
               )}
             </AnimatePresence>
-
             {error && (
               <motion.div
                 initial={{ opacity: 0, y: 6 }}
@@ -199,7 +252,6 @@ export default function UploadPage() {
                 {error}
               </motion.div>
             )}
-
             <AnimatePresence initial={false} mode="wait">
               {result && (
                 <motion.div
@@ -258,10 +310,9 @@ export default function UploadPage() {
               )}
             </AnimatePresence>
           </div>
-
           <AnalyzeModal
             open={modalOpen}
-            onClose={() => setModalOpen(false)}
+            onCancel={onCancel}
             stage={stage}
             progress={pct}
             fileName={file?.name || "resume.pdf"}
@@ -326,7 +377,6 @@ function UploadSection({
   const inputRef = React.useRef<HTMLInputElement>(null);
   void file;
   const success = done;
-
   return (
     <motion.div variants={card} initial="hidden" animate="show" exit="exit">
       <motion.div
@@ -700,13 +750,13 @@ function RedFlagsCard({ items }: { items: string[] }) {
 
 function AnalyzeModal({
   open,
-  onClose,
+  onCancel,
   fileName,
   progress = 0,
   stage,
 }: {
   open: boolean;
-  onClose: () => void;
+  onCancel: () => void;
   fileName?: string;
   progress?: number;
   stage: Stage;
@@ -718,14 +768,12 @@ function AnalyzeModal({
     (s === "parse" ||
       (s === "ai" && ["report", "done"].includes(stage)) ||
       (s === "report" && stage === "done"));
-
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
-
   return (
     <AnimatePresence mode="wait">
       {open && (
@@ -748,21 +796,19 @@ function AnalyzeModal({
                 {fileName || "resume.pdf"}
               </div>
             </div>
-
             <div className="mt-6">
               <div className="h-2.5 w-full overflow-hidden rounded-full bg-white/10">
                 <motion.div
                   className="h-full bg-sky-400"
                   initial={{ width: 0 }}
                   animate={{ width: `${pretty}%` }}
-                  transition={{ ease, duration: 0.8 }}
+                  transition={{ ease, duration: 0.3 }}
                 />
               </div>
               <div className="mt-2 text-center text-sm opacity-85">
                 {pretty}% Complete
               </div>
             </div>
-
             <div className="mt-6 space-y-3">
               <StageRow
                 label="Parsing Document"
@@ -787,7 +833,6 @@ function AnalyzeModal({
                 }
               />
             </div>
-
             <div className="mt-8 text-center">
               <div className="mb-3 text-base font-semibold">Did you know?</div>
               <div className="text-sm text-zinc-300/70">
@@ -797,7 +842,7 @@ function AnalyzeModal({
               <div className="mt-6 flex justify-center">
                 <motion.button
                   whileTap={{ scale: 0.98 }}
-                  onClick={onClose}
+                  onClick={onCancel}
                   className="rounded-lg bg-white/5 px-4 py-2 hover:bg-white/10"
                 >
                   Cancel
@@ -836,7 +881,6 @@ function StageRow({
       : state === "doing"
       ? "bg-sky-500/20"
       : "bg-white/5";
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
