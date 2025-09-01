@@ -8,12 +8,12 @@ import { X } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { LocaleSwitcher } from "./locale-switcher";
 
-type NavItem = { href: string; label: string; aria: string };
+export type NavItem = { href: string; label: string; aria: string };
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  nav: NavItem[];
+  nav: ReadonlyArray<NavItem>;
   brand?: string;
 };
 

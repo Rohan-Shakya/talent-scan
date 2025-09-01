@@ -6,13 +6,13 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LocaleSwitcher } from "./locale-switcher";
-import { MobileMenu } from "./mobile-menu";
+import { MobileMenu, type NavItem } from "./mobile-menu";
 
 const NAV = [
   { href: "/", label: "Home", aria: "Go to Home" },
   { href: "/upload", label: "Upload Resume", aria: "Go to Upload Resume" },
   { href: "/history", label: "History", aria: "Go to History" },
-] as const;
+] as const satisfies ReadonlyArray<NavItem>;
 
 export const Header = () => {
   const pathname = usePathname();
@@ -67,7 +67,7 @@ export const Header = () => {
       <MobileMenu
         open={open}
         onClose={() => setOpen(false)}
-        nav={NAV as any}
+        nav={NAV}
         brand="Talent Scan"
       />
     </header>
