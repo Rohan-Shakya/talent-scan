@@ -24,6 +24,6 @@ Allow: /*.jpg
 Allow: /*.svg
 Allow: /*.ico
 
-Sitemap: https://talent-scan.vercel.app/sitemap.xml
+Sitemap: https://talent-scan-rohan.vercel.app/sitemap.xml
 
 Crawl-delay: 1
