@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { motion, Variants } from "framer-motion";
@@ -95,9 +95,7 @@ type PieTooltipProps = {
 };
 
 const STORAGE_KEY = "talent-scan:history" as const;
-
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
-
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const listStagger: Variants = {
   hidden: { opacity: 0 },
@@ -111,10 +109,211 @@ const card: Variants = {
   show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease } },
 };
 
+const formatBytes = (bytes: number) => {
+  if (!Number.isFinite(bytes) || bytes <= 0) return "-";
+  const kb = bytes / 1024;
+  return `${kb.toFixed(1)} KB`;
+};
+const formatDate = (isoOrAny: string) => {
+  const d = isoOrAny ? new Date(isoOrAny) : new Date();
+  if (Number.isNaN(d.valueOf())) return new Date().toLocaleDateString();
+  return d.toLocaleDateString();
+};
+const fileBase = (name?: string) =>
+  name?.trim().replace(/\s+/g, "_") || "analysis";
+
+const buildReportHTML = (it: AnalysisItem, langCode: string) => {
+  const s = it.scores ?? {};
+  const strengths =
+    it.multiLanguageData?.[langCode]?.strengths ?? it.strengths ?? [];
+  const weaknesses =
+    it.multiLanguageData?.[langCode]?.weaknesses ?? it.weaknesses ?? [];
+  const recommendations =
+    it.multiLanguageData?.[langCode]?.recommendations ??
+    it.recommendations ??
+    [];
+  const skills = it.multiLanguageData?.[langCode]?.skills ?? it.skills ?? [];
+  const summary = it.multiLanguageData?.[langCode]?.summary ?? it.summary ?? "";
+  const tiles = [
+    { label: "Technical Skills", value: s.technical ?? 0 },
+    { label: "Experience Level", value: s.experience ?? 0 },
+    { label: "Communication", value: s.communication ?? 0 },
+    { label: "Culture Fit", value: s.cultureFit ?? 0 },
+  ];
+  const scoreClass = (v: number) =>
+    v >= 80 ? "score-excellent" : v >= 60 ? "score-good" : "score-average";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Resume Analysis Report - ${it.candidateName || "Candidate"}</title>
+<style>
+  body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif; line-height:1.6; max-width:800px; margin:0 auto; padding:20px; color:#333; background:#fff; }
+  .header { text-align:center; border-bottom:3px solid #3b82f6; padding-bottom:20px; margin-bottom:30px; }
+  .header h1 { color:#1e40af; margin:0; font-size:2.5em; }
+  .header p { color:#6b7280; margin:10px 0 0 0; font-size:1.1em; }
+  .meta-info { background:#f8fafc; padding:15px; border-radius:8px; margin-bottom:30px; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:15px; }
+  .meta-item { text-align:center; }
+  .meta-label { font-size:.9em; color:#6b7280; margin-bottom:5px; }
+  .meta-value { font-weight:bold; color:#1f2937; }
+  .overall-score { text-align:center; background:#eef2ff; color:#1f2937; padding:30px; border-radius:12px; margin-bottom:30px; }
+  .overall-score h2 { margin:0 0 10px 0; font-size:1.5em; }
+  .score-circle { display:inline-flex; width:120px; height:120px; border-radius:50%; background:#e0e7ff; align-items:center; justify-content:center; font-size:2.5em; font-weight:700; margin:20px 0; color:#1f2937; }
+  .section { margin-bottom:30px; background:#fff; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden; }
+  .section-header { background:#f9fafb; padding:15px 20px; border-bottom:1px solid #e5e7eb; }
+  .section-header h3 { margin:0; color:#1f2937; font-size:1.3em; }
+  .section-content { padding:20px; }
+  .scores-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; margin-bottom:20px; }
+  .score-item { text-align:center; padding:20px; background:#f8fafc; border-radius:8px; border:1px solid #e5e7eb; }
+  .score-item h4 { margin:0 0 10px 0; color:#374151; font-size:1em; }
+  .score-value { font-size:2em; font-weight:700; margin-bottom:5px; }
+  .score-excellent { color:#059669; } .score-good { color:#d97706; } .score-average { color:#dc2626; }
+  .list-item { padding:10px 0; border-bottom:1px solid #f3f4f6; display:flex; align-items:flex-start; }
+  .list-item:last-child { border-bottom:none; }
+  .list-bullet { width:8px; height:8px; border-radius:50%; margin-right:12px; margin-top:8px; flex-shrink:0; }
+  .strength-bullet { background:#059669; } .weakness-bullet { background:#dc2626; } .recommendation-bullet { background:#3b82f6; }
+  .skills-container { display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tag { background:#dbeafe; color:#1e40af; padding:6px 12px; border-radius:20px; font-size:.9em; font-weight:500; }
+  .footer { text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid #e5e7eb; color:#6b7280; font-size:.9em; }
+  @media print { body { margin:0; padding:15px; } .section { break-inside:avoid; } }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Resume Analysis Report</h1>
+    <p>${it.fileName || "Resume.pdf"} • Generated on ${formatDate(
+    new Date().toISOString()
+  )}</p>
+  </div>
+  <div class="meta-info">
+    <div class="meta-item">
+      <div class="meta-label">Candidate</div>
+      <div class="meta-value">${(it.candidateName || "—").toUpperCase()}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">File Size</div>
+      <div class="meta-value">${formatBytes(it.fileSize)}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Analysis Date</div>
+      <div class="meta-value">${formatDate(it.analysisDate || "")}</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-label">Experience</div>
+      <div class="meta-value">${it.experience?.years ?? "-"} ${
+    it.experience?.years === 1 ? "year" : "years"
+  }</div>
+    </div>
+  </div>
+  <div class="overall-score">
+    <h2>Overall Match Score</h2>
+    <div class="score-circle">${it.overallScore ?? 0}%</div>
+    <p>${summary || ""}</p>
+  </div>
+  <div class="section">
+    <div class="section-header"><h3>Score Breakdown</h3></div>
+    <div class="section-content">
+      <div class="scores-grid">
+        ${tiles
+          .map(
+            (t) => `
+          <div class="score-item">
+            <h4>${t.label}</h4>
+            <div class="score-value ${scoreClass(t.value)}">${Math.round(
+              t.value
+            )}%</div>
+            <div>${
+              t.value >= 80
+                ? "Excellent"
+                : t.value >= 60
+                ? "Good"
+                : "Needs Improvement"
+            }</div>
+          </div>`
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><h3>Key Strengths</h3></div>
+    <div class="section-content">
+      ${
+        strengths.length
+          ? strengths
+              .map(
+                (x) => `
+        <div class="list-item">
+          <div class="list-bullet strength-bullet"></div>
+          <div>${x}</div>
+        </div>`
+              )
+              .join("")
+          : `<div class="list-item"><div class="list-bullet strength-bullet"></div><div>No strengths captured.</div></div>`
+      }
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><h3>Areas for Improvement</h3></div>
+    <div class="section-content">
+      ${
+        weaknesses.length
+          ? weaknesses
+              .map(
+                (x) => `
+        <div class="list-item">
+          <div class="list-bullet weakness-bullet"></div>
+          <div>${x}</div>
+        </div>`
+              )
+              .join("")
+          : `<div class="list-item"><div class="list-bullet weakness-bullet"></div><div>No weaknesses captured.</div></div>`
+      }
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><h3>Skills Identified</h3></div>
+    <div class="section-content">
+      <div class="skills-container">
+        ${
+          skills.length
+            ? skills.map((s) => `<span class="skill-tag">${s}</span>`).join("")
+            : `<span>No skills extracted.</span>`
+        }
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><h3>Hiring Recommendations</h3></div>
+    <div class="section-content">
+      ${
+        recommendations.length
+          ? recommendations
+              .map(
+                (x, i) => `
+        <div class="list-item">
+          <div class="list-bullet recommendation-bullet"></div>
+          <div><strong>${i + 1}.</strong> ${x}</div>
+        </div>`
+              )
+              .join("")
+          : `<div class="list-item"><div class="list-bullet recommendation-bullet"></div><div>No recommendations generated.</div></div>`
+      }
+    </div>
+  </div>
+  <div class="footer">
+    <p>Generated by Talent Scan - AI-Powered Resume Analysis Platform</p>
+    <p>Report ID: ${it.id || "—"}</p>
+  </div>
+</body>
+</html>`;
+};
+
 export default function AnalysisPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
-
   const [lang, setLang] = useState("en");
   const [item, setItem] = useState<AnalysisItem | null>(null);
 
@@ -130,8 +329,8 @@ export default function AnalysisPage() {
     }
   }, [params.id]);
 
-  const safeItem = useMemo<AnalysisItem>(() => {
-    return (
+  const safeItem = useMemo<AnalysisItem>(
+    () =>
       item ?? {
         id: "",
         fileName: "",
@@ -146,9 +345,9 @@ export default function AnalysisPage() {
           communication: 0,
           cultureFit: 0,
         },
-      }
-    );
-  }, [item]);
+      },
+    [item]
+  );
 
   const summary =
     safeItem.multiLanguageData?.[lang]?.summary || safeItem.summary || "";
@@ -193,10 +392,15 @@ export default function AnalysisPage() {
 
   const pct = safeItem.overallScore ?? 0;
 
-  const shareLink = () => `${window.location.origin}/analysis/${safeItem.id}`;
-  const onBack = () =>
-    document.referrer ? router.back() : router.push("/history");
-  const onShare = async () => {
+  const shareLink = useCallback(
+    () => `${window.location.origin}/analysis/${safeItem.id}`,
+    [safeItem.id]
+  );
+  const onBack = useCallback(
+    () => (document.referrer ? router.back() : router.push("/history")),
+    [router]
+  );
+  const onShare = useCallback(async () => {
     const url = shareLink();
     const title = `Resume Analysis – ${safeItem.candidateName || "Candidate"}`;
     try {
@@ -207,23 +411,36 @@ export default function AnalysisPage() {
         alert("Link copied to clipboard");
       }
     } catch {}
-  };
-  const downloadJSON = () => {
+  }, [shareLink, safeItem.candidateName]);
+
+  const downloadJSON = useCallback(() => {
     const blob = new Blob([JSON.stringify(safeItem, null, 2)], {
       type: "application/json",
     });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download =
-      (safeItem.candidateName?.replace(/\s+/g, "_") || "analysis") + ".json";
+    a.download = `${fileBase(safeItem.candidateName)}.json`;
     document.body.appendChild(a);
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-  };
-  const exportPDF = () => window.print();
-  const printReport = () => window.print();
+  }, [safeItem]);
+
+  const printReport = useCallback(() => window.print(), []);
+
+  const downloadHTML = useCallback(() => {
+    const html = buildReportHTML(safeItem, lang);
+    const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${fileBase(safeItem.candidateName)}.html`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, [safeItem, lang]);
 
   if (!item) {
     return (
@@ -249,8 +466,6 @@ export default function AnalysisPage() {
     );
   }
 
-  const axisColor = "#9CA3AF";
-
   function RotatedTick({
     x = 0,
     y = 0,
@@ -267,7 +482,7 @@ export default function AnalysisPage() {
           dy={12}
           textAnchor="end"
           transform="rotate(-35)"
-          fill={axisColor}
+          fill="#9CA3AF"
           fontSize={12}
         >
           {text}
@@ -368,11 +583,11 @@ export default function AnalysisPage() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={downloadHTML}>
+                  Export HTML
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={downloadJSON}>
                   Export JSON
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={exportPDF}>
-                  Export PDF
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={printReport}>
@@ -459,7 +674,7 @@ export default function AnalysisPage() {
                   />
                   <XAxis dataKey="name" interval={0} tick={<RotatedTick />} />
                   <YAxis
-                    tick={{ fill: axisColor, fontSize: 12 }}
+                    tick={{ fill: "#9CA3AF", fontSize: 12 }}
                     domain={[0, 100]}
                     ticks={[0, 25, 50, 75, 100]}
                   />
