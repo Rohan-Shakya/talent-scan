@@ -69,7 +69,7 @@ export async function generateMetadata({
       locale: ogLocale(locale),
       images: [
         {
-          url: `${BASE_URL}/og-image.jpg`,
+          url: `${BASE_URL}/og_image.png`,
           width: 1200,
           height: 630,
           alt: m.ogAlt,
@@ -80,7 +80,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: m.title,
       description: m.description,
-      images: [`${BASE_URL}/og-image.jpg`],
+      images: [`${BASE_URL}/og_image.png`],
     },
     other: { publisher: m.publisher || "Talent Scan" },
   };
@@ -166,7 +166,7 @@ export default async function RootLayout({
       availability: "https://schema.org/InStock",
     },
     featureList: m.featureList,
-    screenshot: `${BASE_URL}/og-image.jpg`,
+    screenshot: `${BASE_URL}/og_image.png`,
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
