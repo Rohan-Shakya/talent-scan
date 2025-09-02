@@ -1,5 +1,7 @@
 # Talent Scan
 
+![Preview](https://raw.githubusercontent.com/Rohan-Shakya/talent-scan/refs/heads/main/public/preview.png)
+
 ## Transform Your Hiring Process with AI
 
 Talent Scan leverages advanced AI technology to analyze resumes, providing instant and comprehensive candidate insights to help you make faster, smarter hiring decisions.
