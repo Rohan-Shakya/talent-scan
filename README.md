@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Talent Scan
 
-## Getting Started
+## Transform Your Hiring Process with AI
 
-First, run the development server:
+Talent Scan leverages advanced AI technology to analyze resumes, providing instant and comprehensive candidate insights to help you make faster, smarter hiring decisions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- AI-Powered Resume Analysis
+  Analyzes resumes across 50+ criteria to provide insights into skills, experience, and fit for a specific role.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Privacy-First Design
+  All resume processing happens securely in your browser. No data is stored on servers, ensuring privacy and security.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Multi-Language Support
+  Talent Scan is available in English, German, and French, with more languages planned for future updates.
 
-## Learn More
+## Live Demo
 
-To learn more about Next.js, take a look at the following resources:
+Experience Talent Scan in action:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔗 [talent-scan-rohan.vercel.app](https://talent-scan-rohan.vercel.app/?utm_source=github.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Setup
 
-## Deploy on Vercel
+**Prerequisites**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Ensure you have the following installed:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js (v20 or higher)
+- npm (v8 or higher)
+
+## Installation
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/Rohan-Shakya/talent-scan.git
+   cd talent-scan
+   ```
+
+2. Install dependencies:
+
+   ```
+   pnpm install
+   ```
+
+3. Start the development server:
+
+   ```
+   pnpm dev
+   ```
+
+4. Open your browser and navigate to http://localhost:3000 to view the application.
+
+## Contribution Guidelines
+
+We welcome contributions to enhance Talent Scan. To get started:
+
+1. Fork the repository.
+
+2. Create a new branch for your feature or bug fix.
+
+3. Make your changes and commit them with clear messages.
+
+4. Push your changes to your forked repository.
+
+5. Submit a pull request detailing your changes.
+
+Please ensure your code adheres to the project's coding standards and includes appropriate tests.
