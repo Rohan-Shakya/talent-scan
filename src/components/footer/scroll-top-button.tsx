@@ -11,6 +11,7 @@ import {
   type Variants,
   type Transition,
 } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export const ScrollTopButton = () => {
   const [isShown, setIsShown] = useState(false);
@@ -19,6 +20,8 @@ export const ScrollTopButton = () => {
 
   const easeOut: Transition["ease"] = [0.16, 1, 0.3, 1];
   const easeInOut: Transition["ease"] = [0.45, 0, 0.55, 1];
+
+  const t = useTranslations("Footer");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsShown(latest > 200);
@@ -41,7 +44,7 @@ export const ScrollTopButton = () => {
     <MotionConfig reducedMotion="user">
       <motion.button
         type="button"
-        aria-label="Back to top"
+        aria-label={t("backToTop")} // Translate the label dynamically
         initial="hidden"
         animate={isShown ? "visible" : "hidden"}
         variants={flyIn}
@@ -52,7 +55,8 @@ export const ScrollTopButton = () => {
         whileTap={{ scale: 0.97 }}
         transition={{ duration: 0.2, ease: easeOut }}
       >
-        <span className="hidden sm:inline">Back to top</span>
+        <span className="hidden sm:inline">{t("backToTop")}</span>{" "}
+        {/* Use dynamic translation here */}
         <motion.span
           aria-hidden="true"
           animate={

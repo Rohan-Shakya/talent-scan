@@ -1,0 +1,290 @@
+{
+  "Meta": {
+    "title": "Talent Scan – KI-gestützte Lebenslaufanalyse & Kandidatenbewertung",
+    "description": "Transformieren Sie Ihren Einstellungsprozess mit KI. Laden Sie Lebensläufe hoch und erhalten Sie sofort umfassende Kandidaten-Einblicke, Kompetenzbewertungen und Einstellungsempfehlungen.",
+    "appTitle": "Talent Scan",
+    "siteName": "Talent Scan",
+    "ogAlt": "Talent Scan – KI-gestützte Lebenslaufanalyse & Kandidatenbewertung",
+    "publisher": "Talent Scan",
+    "keywords": [
+      "KI Lebenslaufanalyse",
+      "Kandidatenscreening",
+      "Recruiting Tool",
+      "Lebenslauf Parser",
+      "Recruitment KI",
+      "HR Technologie",
+      "Talentgewinnung",
+      "Lebenslauf Screening",
+      "Kandidatenbewertung",
+      "rohan shakya"
+    ],
+    "orgDescription": "KI-gestützte Plattform zur Lebenslaufanalyse für modernes Recruiting.",
+    "softwareName": "Talent Scan",
+    "softwareAltName": "Talent Scan Lebenslauf-Analyzer",
+    "softwareDescription": "KI-gestütztes Tool für Lebenslaufanalyse & Kandidatenbewertung mit sofortigen Einblicken und Kompetenzbeurteilung.",
+    "knowsAbout": [
+      "Künstliche Intelligenz",
+      "Lebenslaufanalyse",
+      "Human Resources",
+      "Recruiting-Technologie",
+      "Kandidatenscreening"
+    ],
+    "featureList": [
+      "KI-gestützte Lebenslaufanalyse",
+      "Sofortige Kandidaten-Einblicke",
+      "Kompetenzbewertung",
+      "Einstellungsempfehlungen",
+      "PDF-Parsing von Lebensläufen",
+      "Kandidatenscoring und -ranking",
+      "Export von Analyseberichten",
+      "Datenschutzfreundliche lokale Verarbeitung"
+    ]
+  },
+  "UploadMeta": {
+    "uploadTitle": "Lebenslauf für KI-Analyse hochladen | Talent Scan",
+    "uploadDescription": "Laden Sie Ihren Lebenslauf hoch und erhalten Sie sofortige, KI-gestützte Analysen: Extraktion von Fähigkeiten, Bewertung der Erfahrungen, Kulturfit-Signale, Stärken, Risiken und umsetzbare Empfehlungen für die Einstellung.",
+    "uploadKeywords": [
+      "Lebenslauf-Analyse",
+      "KI-Lebenslauf-Analysator",
+      "Bewerber-Insights",
+      "Fähigkeitsbewertung",
+      "Talent-Intelligenz",
+      "Einstellungsempfehlungen",
+      "ATS-Parsing",
+      "Lebenslauf-Parser",
+      "Talent-Scan",
+      "HR-Tech",
+      "Rekrutierungsautomation"
+    ],
+    "ogAlt": "Talent Scan - Lebenslauf für KI-Analyse hochladen",
+    "publisher": "Talent Scan"
+  },
+  "LearnMoreMeta": {
+    "pageTitle": "Über Talent Scan – KI-gestützte Lebenslauf-Analyse-Plattform | Talent Scan",
+    "pageDescription": "Erfahren Sie, wie Talent Scan den Einstellungsprozess mit KI transformiert. Parse Lebensläufe, extrahiere Fähigkeiten, bewerte Erfahrungen und Kulturfit, markiere Risiken und generiere umsetzbare Empfehlungen für schnellere, datengestützte Entscheidungen.",
+    "pageKeywords": [
+      "über Talent Scan",
+      "KI-Einstellungsplattform",
+      "Lebenslauf-Analyse",
+      "ATS-Parser",
+      "Bewerberbewertung",
+      "Talent-Intelligenz",
+      "Rekrutierungsanalyse",
+      "Fähigkeiten-Extraktion",
+      "Kulturfit-Analyse",
+      "HR-Technologie"
+    ],
+    "ogAlt": "Talent Scan — Über die Plattform",
+    "publisher": "Talent Scan"
+  },
+  "HistoryMeta": {
+    "pageTitle": "Analyse-Historie - Talent Scan",
+    "pageDescription": "Überprüfen und verwalten Sie Ihre KI-Lebenslauf-Analyse-Historie. Öffnen Sie Berichte erneut, vergleichen Sie Bewertungen, verfolgen Sie Kandidaten und exportieren Sie Einblicke für rechtskonforme, datengestützte Einstellungsentscheidungen.",
+    "pageKeywords": [
+      "Analyse-Historie",
+      "Lebenslauf-Analyse-Historie",
+      "Kandidatenberichte",
+      "Einstellungsanalyse",
+      "Talent-Intelligenz",
+      "ATS-Einblicke",
+      "HR-Audit-Trail",
+      "Kandidaten vergleichen",
+      "Gespeicherte Bewertungen",
+      "KI-Rekrutierungsanalyse"
+    ],
+    "ogAlt": "Talent Scan — Analyse-Historie",
+    "publisher": "Talent Scan"
+  },
+  "AnalysisMeta": {
+    "pageTitle": "Analyse-Ergebnisse - Talent Scan",
+    "pageDescription": "Sehen Sie sich die KI-gestützten Lebenslauf-Analyse-Ergebnisse mit Gesamtmatch-Score, Fähigkeitsaufteilungen, Stärken, Risiken und umsetzbaren Empfehlungen für die Einstellung an.",
+    "pageKeywords": [
+      "Analyse-Ergebnisse",
+      "Lebenslauf-Analyse-Bericht",
+      "KI-Lebenslauf-Analysator",
+      "Bewerberbewertung",
+      "Fähigkeiten-Aufschlüsselung",
+      "Kulturfit-Score",
+      "ATS-Parsing",
+      "Einstellungs-Einblicke",
+      "Rekrutierungs-Analyse",
+      "Talent-Intelligenz"
+    ],
+    "ogAlt": "Talent Scan — Analyse-Ergebnisse",
+    "publisher": "Talent Scan"
+  },
+  "Header": {
+    "brand": "Talent Scan",
+    "openMenu": "Menü öffnen",
+    "home": "Startseite",
+    "homeUrl": "/de",
+    "uploadResume": "Lebenslauf hochladen",
+    "uploadResumeUrl": "/de/hochladen",
+    "history": "Geschichte",
+    "historyUrl": "/de/geschichte",
+    "uploadResumeAria": "Gehe zu Lebenslauf hochladen",
+    "historyAria": "Gehe zu Geschichte"
+  },
+  "Languages": {
+    "en": "Englisch",
+    "de": "Deutsch",
+    "fr": "Französisch"
+  },
+  "Footer": {
+    "talentScan": "Talent Scan",
+    "aiPoweredHiring": "KI-gesteuerte Einstellungsintelligenz",
+    "recruitmentDescription": "Transformieren Sie Ihren Rekrutierungsprozess mit fortschrittlicher KI-Technologie. Erhalten Sie sofort umfassende Kandidateninformationen und treffen Sie schneller bessere Einstellungsentscheidungen.",
+    "product": "Produkt",
+    "features": "Merkmale",
+    "benefits": "Vorteile",
+    "howItWorks": "Wie es funktioniert",
+    "application": "Bewerbung",
+    "uploadResume": "Lebenslauf hochladen",
+    "analysisHistory": "Analyseverlauf",
+    "aboutUs": "Über uns",
+    "help": "Hilfe",
+    "faq": "FAQ",
+    "getStarted": "Jetzt loslegen",
+    "backToTop": "Zurück nach oben"
+  },
+  "Hero": {
+    "title": "Transformieren Sie Ihren Einstellungsprozess mit KI",
+    "subtitle": "Erhalten Sie sofort umfassende Kandidaten-Einblicke mit unserer fortschrittlichen, KI-gestützten Plattform zur Lebenslaufanalyse.",
+    "ctaPrimary": "Jetzt starten",
+    "ctaSecondary": "Mehr erfahren"
+  },
+  "Highlights": {
+    "title": "Projekt-Highlights",
+    "subtitle": "Zentrale Funktionen und Fähigkeiten der Talent-Scan-Plattform.",
+    "cards": {
+      "ai": {
+        "title": "KI-gestützte Analyse",
+        "desc": "Fortgeschrittenes Machine Learning bewertet Lebensläufe anhand von über 50 Kriterien für umfassende Einblicke."
+      },
+      "privacy": {
+        "title": "Privacy-First-Design",
+        "desc": "Die Verarbeitung erfolgt vollständig lokal in Ihrem Browser. Es werden keine Lebenslaufdaten auf externen Servern gespeichert."
+      },
+      "multiLang": {
+        "title": "Mehrsprachige Unterstützung",
+        "desc": "Verfügbar auf Englisch, Deutsch und Französisch; weitere Sprachen sind geplant."
+      }
+    }
+  },
+  "Benefits": {
+    "title": "Reale Vorteile im Recruiting nutzen",
+    "subtitle": "Beschleunigen Sie Ihr Recruiting mit KI-gestützten Einblicken für schnellere, smartere Entscheidungen.",
+    "items": {
+      "saveTime": {
+        "title": "Zeit sparen",
+        "desc": "Analysieren Sie Lebensläufe in Sekunden statt Stunden."
+      },
+      "betterDecisions": {
+        "title": "Bessere Entscheidungen",
+        "desc": "KI-gestützte Insights helfen bei fundierten Einstellungsentscheidungen."
+      },
+      "reduceBias": {
+        "title": "Bias reduzieren",
+        "desc": "Objektive Analyse auf Basis von Fähigkeiten und Erfahrung."
+      },
+      "scaleHiring": {
+        "title": "Hiring skalieren",
+        "desc": "Verarbeiten Sie hunderte Lebensläufe effizient."
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "So funktioniert’s",
+    "subtitle": "Starten Sie mit Talent Scan in nur drei einfachen Schritten.",
+    "steps": {
+      "upload": {
+        "title": "Lebenslauf hochladen",
+        "desc": "Ziehen Sie eine PDF-Datei per Drag & Drop hierher oder klicken Sie zum Auswählen."
+      },
+      "analysis": {
+        "title": "KI-Analyse",
+        "desc": "Unsere fortschrittliche KI analysiert Fähigkeiten, Erfahrung und Eignung."
+      },
+      "insights": {
+        "title": "Ergebnisse erhalten",
+        "desc": "Erhalten Sie eine detaillierte Auswertung mit Bewertungen und Empfehlungen."
+      }
+    }
+  },
+  "FAQ": {
+    "q1": "Wie genau ist die KI-Analyse?",
+    "a1": "Unsere KI wurde mit Tausenden von Lebensläufen und Stellenbeschreibungen trainiert und erreicht eine hohe Genauigkeit bei Kompetenz- und Erfahrungsbewertung.",
+    "q2": "Sind meine Daten sicher und privat?",
+    "a2": "Die Verarbeitung erfolgt lokal in Ihrem Browser. Wir speichern keine Lebenslaufinhalte auf unseren Servern.",
+    "q3": "Welche Dateiformate werden unterstützt?",
+    "a3": "Aktuell unterstützen wir PDF-Dateien bis 5 MB. Weitere Formate sind geplant.",
+    "q4": "Was kostet Talent Scan?",
+    "a4": "Talent Scan ist derzeit kostenlos nutzbar – für Organisationen jeder Größe."
+  },
+  "GetStarted": {
+    "title": "Bereit, loszulegen?",
+    "subtitle": "Lade deinen ersten Lebenslauf hoch und erlebe die Kraft der KI-gesteuerten Analyse.",
+    "primaryCta": "Analyse starten",
+    "secondaryCta": "Mehr erfahren"
+  },
+  "UploadPage": {
+    "title": "Lebenslauf hochladen",
+    "description": "Laden Sie einen PDF-Lebenslauf hoch, um sofortige KI-gestützte Analysen und Einblicke zu erhalten.",
+    "analysisComplete": "Analyse abgeschlossen",
+    "dragAndDrop": "Ziehen Sie den Lebenslauf hierher oder klicken Sie, um auszuwählen",
+    "pdfLimit": "Nur PDF-Dateien (max. 5MB)",
+    "parsingDocument": "Dokument wird analysiert",
+    "aiAnalysis": "KI-Analyse",
+    "generatingReport": "Bericht wird erstellt",
+    "didYouKnow": "Wusstest du schon?",
+    "didYouKnowText": "Unsere KI analysiert über 50 verschiedene Kriterien, um umfassende Einblicke in Kandidaten zu bieten.",
+    "cancel": "Abbrechen",
+    "fileInfo": "KB • 1 Seite",
+    "uploadSuccessful": "Hochladen erfolgreich",
+    "overallScore": "Gesamtpunktzahl",
+    "technicalSkills": "Technische Fähigkeiten",
+    "experienceLevel": "Erfahrungsstufe",
+    "communication": "Kommunikation",
+    "cultureFit": "Kulturelle Passung",
+    "excellent": "Ausgezeichnet",
+    "keyStrengths": "Schlüsselstärken",
+    "areasForImprovement": "Verbesserungsbereiche",
+    "skillsIdentified": "Erkannte Fähigkeiten",
+    "experienceSummary": "Erfahrungsübersicht",
+    "yearsOfExperience": "Jahre Erfahrung",
+    "years": "Jahre",
+    "previousCompanies": "Frühere Unternehmen",
+    "hiringRecommendations": "Einstellungen Empfehlungen",
+    "potentialRedFlags": "Potenzielle Warnzeichen",
+    "analysingResume": "Lebenslauf wird analysiert",
+    "complete": "Abgeschlossen"
+  },
+  "HistoryPage": {
+    "title": "Analyseverlauf",
+    "subtitle": "Ihre gespeicherten Lebenslauf-Analysen anzeigen und verwalten",
+    "noAnalyses": "Noch keine Analysen",
+    "uploadResume": "Lebenslauf hochladen",
+    "totalAnalyses": "Gesamtanalysen",
+    "averageScore": "Durchschnittliche Punktzahl",
+    "thisWeek": "Diese Woche",
+    "topCandidates": "Top-Kandidaten (≥85)",
+    "searchPlaceholder": "Suche nach Dateinamen oder Kandidatennamen...",
+    "noMatchingAnalyses": "Keine passenden Analysen.",
+    "noSummary": "Keine Zusammenfassung verfügbar.",
+    "analyzed": "Analysiert",
+    "view": "Ansehen",
+    "download": "Herunterladen",
+    "deleteAll": "Alle löschen",
+    "delete": "Löschen",
+    "cancel": "Abbrechen",
+    "deleteAnalysis": "Analyse löschen",
+    "confirmDelete": "Möchten Sie diese Analyse wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAllConfirm": "Möchten Sie wirklich alle {count} Analysen löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "date_desc": "Neueste zuerst",
+    "date_asc": "Älteste zuerst",
+    "score_desc": "Höchste zuerst",
+    "score_asc": "Niedrigste zuerst",
+    "name_asc": "Name (A–Z)",
+    "name_desc": "Name (Z–A)"
+  }
+}

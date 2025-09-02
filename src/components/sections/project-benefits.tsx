@@ -2,6 +2,8 @@
 
 import { CheckIcon } from "lucide-react";
 import { motion, type Variants, cubicBezier } from "framer-motion";
+import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -49,24 +51,27 @@ const artIn: Variants = {
 };
 
 type Benefit = { title: string; desc: string };
-
-const BENEFITS: Benefit[] = [
-  { title: "Save Time", desc: "Analyze resumes in seconds instead of hours." },
-  {
-    title: "Better Decisions",
-    desc: "AI-powered insights help you make informed hiring choices.",
-  },
-  {
-    title: "Reduce Bias",
-    desc: "Objective analysis based on skills and experience.",
-  },
-  {
-    title: "Scale Hiring",
-    desc: "Process hundreds of resumes efficiently.",
-  },
-];
+type BenefitKey = "saveTime" | "betterDecisions" | "reduceBias" | "scaleHiring";
 
 export const ProjectBenefits = () => {
+  const t = useTranslations("Benefits");
+
+  const BENEFITS: Benefit[] = useMemo(
+    () =>
+      (
+        [
+          "saveTime",
+          "betterDecisions",
+          "reduceBias",
+          "scaleHiring",
+        ] as BenefitKey[]
+      ).map((k) => ({
+        title: t(`items.${k}.title`),
+        desc: t(`items.${k}.desc`),
+      })),
+    [t]
+  );
+
   return (
     <motion.section
       id="benefits"
@@ -83,15 +88,14 @@ export const ProjectBenefits = () => {
               variants={fadeUp}
               className="text-3xl lg:text-4xl font-bold text-headline mb-6"
             >
-              Unlock Real Hiring Advantages
+              {t("title")}
             </motion.h2>
 
             <motion.p
               variants={fadeUp}
               className="text-xl text-body-text mb-8 leading-relaxed"
             >
-              Elevate recruitment with AI-powered insights for faster, smarter
-              decisions.
+              {t("subtitle")}
             </motion.p>
 
             <motion.div variants={sectionStagger} className="space-y-4">

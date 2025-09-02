@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import {
   Select,
   SelectContent,
@@ -8,36 +7,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-type Props = { className?: string };
+import { useLocale } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 const LANG = {
-  en: { label: "English", flag: "🇺🇸" },
-  de: { label: "Deutsch", flag: "🇩🇪" },
-  fr: { label: "Français", flag: "🇫🇷" },
+  en: { flag: "🇺🇸" },
+  de: { flag: "🇩🇪" },
+  fr: { flag: "🇫🇷" },
 } as const;
 
-type LangKey = keyof typeof LANG;
+export const LocaleSwitcher = ({ className }: { className?: string }) => {
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+  const t = useTranslations("Languages");
 
-function getInitialLang(): LangKey {
-  if (typeof window === "undefined") return "en";
-  const saved = localStorage.getItem("talent-scan:lang");
-  return saved && saved in LANG ? (saved as LangKey) : "en";
-}
-
-export const LocaleSwitcher = ({ className }: Props) => {
-  const [language, setLanguage] = useState<LangKey>(getInitialLang);
-
-  const onChange = (value: LangKey) => {
-    setLanguage(value);
-    if (typeof window !== "undefined")
-      localStorage.setItem("talent-scan:lang", value);
+  const handleLocaleChange = (next: string) => {
+    router.replace(pathname as "/upload" | "/learn-more" | "/history", {
+      locale: next,
+    });
   };
 
   return (
-    <Select value={language} onValueChange={onChange}>
+    <Select value={locale} onValueChange={handleLocaleChange}>
       <SelectTrigger className={`w-[200px] ${className ?? ""}`}>
-        <SelectValue aria-label={LANG[language].label} />
+        <SelectValue />
       </SelectTrigger>
 
       <SelectContent className="rounded-xl">
@@ -45,7 +40,7 @@ export const LocaleSwitcher = ({ className }: Props) => {
           <SelectItem key={value} value={value} className="py-2">
             <div className="flex items-center gap-3">
               <span className="text-xl leading-none">{meta.flag}</span>
-              <span className="text-base">{meta.label}</span>
+              <span className="text-base">{t(`${value}`)}</span>
             </div>
           </SelectItem>
         ))}

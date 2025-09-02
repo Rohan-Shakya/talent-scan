@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { CloudUploadIcon, PlayIcon } from "lucide-react";
 import {
   motion,
@@ -8,6 +7,9 @@ import {
   type Variants,
   cubicBezier,
 } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { DEFAULT_LOCALE } from "@/lib/const";
 
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -28,7 +30,9 @@ const stagger: Variants = {
 };
 
 export const HeroBanner = () => {
+  const locale = useLocale();
   const reduce = useReducedMotion();
+  const t = useTranslations("Hero");
 
   return (
     <motion.section
@@ -47,15 +51,14 @@ export const HeroBanner = () => {
               variants={fadeUp}
               className="text-4xl sm:text-5xl lg:text-6xl leading-tight font-bold mb-6"
             >
-              Transform Your Hiring Process with AI
+              {t("title")}
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
               className="text-xl mb-8 leading-relaxed text-muted-foreground"
             >
-              Get instant, comprehensive candidate insights with our advanced
-              AI-powered resume analysis platform.
+              {t("subtitle")}
             </motion.p>
 
             <motion.div
@@ -64,25 +67,29 @@ export const HeroBanner = () => {
             >
               <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/upload"
+                  href={"/upload"}
+                  locale={locale !== DEFAULT_LOCALE ? locale : undefined}
+                  aria-label={t("ctaPrimary")}
                   className="inline-flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/95 shadow-custom-base hover:shadow-custom-lg rounded-lg px-8 py-4 text-lg font-semibold"
                 >
                   <span className="mr-2 flex-shrink-0">
                     <CloudUploadIcon />
                   </span>
-                  <span>Get Started</span>
+                  <span>{t("ctaPrimary")}</span>
                 </Link>
               </motion.div>
 
               <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
                 <Link
-                  href="/learn-more"
+                  href={"/learn-more"}
+                  locale={locale !== DEFAULT_LOCALE ? locale : undefined}
+                  aria-label={t("ctaSecondary")}
                   className="inline-flex items-center justify-center transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground active:bg-primary/95 rounded-lg px-8 py-4 text-lg font-semibold"
                 >
                   <span className="mr-2 flex-shrink-0">
                     <PlayIcon />
                   </span>
-                  <span>Learn More</span>
+                  <span>{t("ctaSecondary")}</span>
                 </Link>
               </motion.div>
             </motion.div>

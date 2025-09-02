@@ -1,6 +1,8 @@
 "use client";
 
 import { motion, type Variants, cubicBezier } from "framer-motion";
+import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -50,26 +52,21 @@ const lineGrow: Variants = {
 };
 
 type Step = { n: string; title: string; desc: string };
-
-const STEPS: Step[] = [
-  {
-    n: "01",
-    title: "Upload Resume",
-    desc: "Simply drag and drop a PDF resume or click to select.",
-  },
-  {
-    n: "02",
-    title: "AI Analysis",
-    desc: "Our advanced AI analyzes skills, experience, and fit.",
-  },
-  {
-    n: "03",
-    title: "Get Insights",
-    desc: "Receive detailed analysis with scores and recommendations.",
-  },
-];
+type StepKey = "upload" | "analysis" | "insights";
 
 export const HowItWorks = () => {
+  const t = useTranslations("HowItWorks");
+
+  const steps: Step[] = useMemo(
+    () =>
+      (["upload", "analysis", "insights"] as StepKey[]).map((k, i) => ({
+        n: String(i + 1).padStart(2, "0"),
+        title: t(`steps.${k}.title`),
+        desc: t(`steps.${k}.desc`),
+      })),
+    [t]
+  );
+
   return (
     <motion.section
       id="how-it-works"
@@ -85,19 +82,19 @@ export const HowItWorks = () => {
             variants={fadeUp}
             className="text-3xl lg:text-4xl font-bold text-headline mb-4"
           >
-            How It Works
+            {t("title")}
           </motion.h2>
           <motion.p
             variants={fadeUp}
             className="text-xl text-body-text max-w-2xl mx-auto"
           >
-            Get started with Talent Scan in just three simple steps.
+            {t("subtitle")}
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {STEPS.map((s, i) => (
-            <StepCard key={s.n} {...s} isLast={i === STEPS.length - 1} />
+          {steps.map((s, i) => (
+            <StepCard key={s.n} {...s} isLast={i === steps.length - 1} />
           ))}
         </div>
       </div>

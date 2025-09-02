@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import {
   UploadIcon,
   FileTextIcon,
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 import DefaultLayout from "@/components/layouts/default-layout";
 import type { Options as ConfettiOptions } from "canvas-confetti";
+import { useRouter } from "next/navigation";
 
 type AnalysisResponse = {
   id: string;
@@ -102,6 +104,9 @@ const card: Variants = {
 };
 
 export default function UploadPage() {
+  const locale = useLocale();
+  const router = useRouter();
+  const t = useTranslations("UploadPage");
   const [file, setFile] = React.useState<File | null>(null);
   const [drag, setDrag] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -272,7 +277,7 @@ export default function UploadPage() {
                     className="grid grid-cols-1 gap-8 md:grid-cols-2"
                   >
                     <BulletCard
-                      title="Key Strengths"
+                      title={t("keyStrengths")}
                       icon={
                         <CheckCircle2Icon className="h-5 w-5 text-emerald-400" />
                       }
@@ -280,7 +285,7 @@ export default function UploadPage() {
                       tone="ok"
                     />
                     <BulletCard
-                      title="Areas for Improvement"
+                      title={t("areasForImprovement")}
                       icon={
                         <AlertTriangleIcon className="h-5 w-5 text-amber-400" />
                       }
@@ -292,7 +297,10 @@ export default function UploadPage() {
                     variants={card}
                     className="grid grid-cols-1 gap-8 md:grid-cols-2"
                   >
-                    <PillCard title="Skills Identified" pills={result.skills} />
+                    <PillCard
+                      title={t("skillsIdentified")}
+                      pills={result.skills}
+                    />
                     <ExperienceCard
                       years={result.experience.years}
                       companies={result.experience.companies}
@@ -324,6 +332,8 @@ export default function UploadPage() {
 }
 
 function HeaderHero() {
+  const t = useTranslations("UploadPage");
+
   return (
     <div className="mx-auto max-w-6xl px-3 pb-6 text-center">
       <motion.div
@@ -347,7 +357,7 @@ function HeaderHero() {
         transition={{ duration: 0.4, ease }}
         className="mt-4 text-4xl font-semibold tracking-tight"
       >
-        Upload Resume
+        {t("title")}
       </motion.h1>
       <motion.p
         initial={{ y: 8, opacity: 0 }}
@@ -355,7 +365,7 @@ function HeaderHero() {
         transition={{ duration: 0.45, ease, delay: 0.05 }}
         className="mx-auto mt-3 max-w-2xl text-zinc-300/85"
       >
-        Upload a PDF resume to get instant AI-powered analysis and insights.
+        {t("description")}
       </motion.p>
     </div>
   );
@@ -374,6 +384,7 @@ function UploadSection({
   setDrag: (b: boolean) => void;
   onFile: (f: File) => void;
 }) {
+  const t = useTranslations("UploadPage");
   const inputRef = React.useRef<HTMLInputElement>(null);
   void file;
   const success = done;
@@ -443,11 +454,9 @@ function UploadSection({
             transition={{ duration: 0.35, ease }}
             className="mt-4 mb-2 text-xl font-semibold"
           >
-            {success
-              ? "Analysis Complete"
-              : "Drag & drop resume here, or click to select"}
+            {success ? t("analysisComplete") : t("dragAndDrop")}
           </motion.div>
-          <div className="text-sm text-zinc-400">PDF files only (max 5MB)</div>
+          <div className="text-sm text-zinc-400">{t("pdfLimit")}</div>
         </div>
       </motion.div>
     </motion.div>
@@ -455,6 +464,8 @@ function UploadSection({
 }
 
 function UploadedCard({ file, onClear }: { file: File; onClear: () => void }) {
+  const t = useTranslations("UploadPage");
+
   return (
     <motion.div
       variants={card}
@@ -471,11 +482,11 @@ function UploadedCard({ file, onClear }: { file: File; onClear: () => void }) {
           <div className="min-w-0">
             <div className="truncate font-medium">{file.name}</div>
             <div className="text-xs text-zinc-400">
-              {(file.size / 1024).toFixed(0)} KB • 1 Pages
+              {(file.size / 1024).toFixed(0)} {t("fileInfo")}
             </div>
           </div>
           <span className="ml-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2 py-0.5 text-xs text-emerald-300">
-            Upload successful
+            {t("uploadSuccessful")}
           </span>
         </div>
         <motion.button
@@ -493,6 +504,7 @@ function UploadedCard({ file, onClear }: { file: File; onClear: () => void }) {
 }
 
 function HeroScoreCard({ score, summary }: { score: number; summary: string }) {
+  const t = useTranslations("UploadPage");
   const s = Math.max(0, Math.min(100, Math.round(score)));
   return (
     <motion.div
@@ -505,7 +517,7 @@ function HeroScoreCard({ score, summary }: { score: number; summary: string }) {
       <div className="flex flex-col items-center gap-8 md:flex-row">
         <AnimatedRing score={s} />
         <div className="flex-1 text-center md:text-left">
-          <h2 className="text-2xl font-bold text-white">Overall Match Score</h2>
+          <h2 className="text-2xl font-bold text-white">{t("overallScore")}</h2>
           <p className="mt-3 text-base leading-relaxed">{summary}</p>
         </div>
       </div>
@@ -547,11 +559,12 @@ function AnimatedRing({ score }: { score: number }) {
 }
 
 function MetricTiles({ scores }: { scores: AnalysisResponse["scores"] }) {
+  const t = useTranslations("UploadPage");
   const items = [
-    { label: "Technical Skills", value: scores.technical },
-    { label: "Experience Level", value: scores.experience },
-    { label: "Communication", value: scores.communication },
-    { label: "Culture Fit", value: scores.cultureFit },
+    { label: t("technicalSkills"), value: scores.technical },
+    { label: t("experienceLevel"), value: scores.experience },
+    { label: t("communication"), value: scores.communication },
+    { label: t("cultureFit"), value: scores.cultureFit },
   ];
   return (
     <motion.div
@@ -573,7 +586,7 @@ function MetricTiles({ scores }: { scores: AnalysisResponse["scores"] }) {
           <div className="mb-1 mt-3 text-3xl font-semibold">
             {Math.round(it.value)}%
           </div>
-          <div className="text-sm text-emerald-400">Excellent</div>
+          <div className="text-sm text-emerald-400">{t("excellent")}</div>
         </motion.div>
       ))}
     </motion.div>
@@ -664,6 +677,7 @@ function ExperienceCard({
   years: number;
   companies: string[];
 }) {
+  const t = useTranslations("UploadPage");
   return (
     <motion.div
       variants={card}
@@ -672,11 +686,13 @@ function ExperienceCard({
       exit="exit"
       className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
     >
-      <div className="text-lg font-semibold">Experience Summary</div>
+      <div className="text-lg font-semibold">{t("experienceSummary")}</div>
       <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
-        <div className="opacity-70">Years of Experience</div>
-        <div className="text-right">{years} years</div>
-        <div className="opacity-70">Previous Companies</div>
+        <div className="opacity-70">{t("yearsOfExperience")}</div>
+        <div className="text-right">
+          {years} {t("years")}
+        </div>
+        <div className="opacity-70">{t("previousCompanies")}</div>
         <div className="truncate text-right">{companies.join(", ")}</div>
       </div>
     </motion.div>
@@ -684,6 +700,7 @@ function ExperienceCard({
 }
 
 function RecommendationsCard({ items }: { items: string[] }) {
+  const t = useTranslations("UploadPage");
   return (
     <motion.div
       variants={card}
@@ -692,7 +709,7 @@ function RecommendationsCard({ items }: { items: string[] }) {
       exit="exit"
       className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
     >
-      <div className="text-lg font-semibold">Hiring Recommendations</div>
+      <div className="text-lg font-semibold">{t("hiringRecommendations")}</div>
       <ol className="mt-4 space-y-4">
         {items.map((t, i) => (
           <motion.li
@@ -717,6 +734,7 @@ function RecommendationsCard({ items }: { items: string[] }) {
 }
 
 function RedFlagsCard({ items }: { items: string[] }) {
+  const t = useTranslations("UploadPage");
   return (
     <motion.div
       variants={card}
@@ -726,7 +744,7 @@ function RedFlagsCard({ items }: { items: string[] }) {
       className="rounded-2xl border border-rose-500/40 bg-rose-500/10 p-6"
     >
       <div className="mb-3 flex items-center gap-2 text-lg font-semibold text-rose-200">
-        <AlertTriangleIcon className="h-5 w-5" /> Potential Red Flags
+        <AlertTriangleIcon className="h-5 w-5" /> {t("potentialRedFlags")}
       </div>
       <ul className="space-y-3 text-rose-100">
         {items.map((b, i) => (
@@ -761,6 +779,7 @@ function AnalyzeModal({
   progress?: number;
   stage: Stage;
 }) {
+  const t = useTranslations("UploadPage");
   const pretty = Math.max(0, Math.min(100, Math.round(progress)));
   const doing = (s: Stage) => stage === s;
   const done = (s: Stage) =>
@@ -791,7 +810,9 @@ function AnalyzeModal({
             transition={{ type: "spring", stiffness: 260, damping: 24 }}
           >
             <div className="text-center">
-              <div className="text-2xl font-semibold">Analyzing Resume</div>
+              <div className="text-2xl font-semibold">
+                {t("analysingResume")}
+              </div>
               <div className="mt-1 text-sm opacity-80">
                 {fileName || "resume.pdf"}
               </div>
@@ -806,12 +827,12 @@ function AnalyzeModal({
                 />
               </div>
               <div className="mt-2 text-center text-sm opacity-85">
-                {pretty}% Complete
+                {pretty}% {t("complete")}
               </div>
             </div>
             <div className="mt-6 space-y-3">
               <StageRow
-                label="Parsing Document"
+                label={t("parsingDocument")}
                 sub="Extracting text and structure from your resume"
                 leftIcon="check"
                 state={
@@ -819,13 +840,13 @@ function AnalyzeModal({
                 }
               />
               <StageRow
-                label="AI Analysis"
+                label={t("aiAnalysis")}
                 sub="Evaluating skills, experience, and qualifications"
                 leftIcon="zap"
                 state={doing("ai") ? "doing" : done("ai") ? "done" : "idle"}
               />
               <StageRow
-                label="Generating Report"
+                label={t("generatingReport")}
                 sub="Creating comprehensive insights and recommendations"
                 leftIcon="activity"
                 state={
@@ -834,10 +855,11 @@ function AnalyzeModal({
               />
             </div>
             <div className="mt-8 text-center">
-              <div className="mb-3 text-base font-semibold">Did you know?</div>
+              <div className="mb-3 text-base font-semibold">
+                {t("didYouKnow")}
+              </div>
               <div className="text-sm text-zinc-300/70">
-                Our AI analyzes over 50 different criteria to provide
-                comprehensive candidate insights.
+                {t("didYouKnowText")}
               </div>
               <div className="mt-6 flex justify-center">
                 <motion.button
@@ -845,7 +867,7 @@ function AnalyzeModal({
                   onClick={onCancel}
                   className="rounded-lg bg-white/5 px-4 py-2 hover:bg-white/10"
                 >
-                  Cancel
+                  {t("cancel")}
                 </motion.button>
               </div>
             </div>

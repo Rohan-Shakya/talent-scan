@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, Variants } from "framer-motion";
+import { useLocale, useTranslations } from "next-intl";
 import {
   FileText,
   TrendingUp,
@@ -43,6 +44,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { DEFAULT_LOCALE } from "@/lib/const";
 
 type SupportedLocale = "en" | "de" | "fr";
 
@@ -86,15 +88,6 @@ type SortKey =
   | "name_asc"
   | "name_desc";
 
-const SORT_LABELS: Record<SortKey, string> = {
-  date_desc: "Date (Newest First)",
-  date_asc: "Date (Oldest First)",
-  score_desc: "Score (Highest First)",
-  score_asc: "Score (Lowest First)",
-  name_asc: "Name (A–Z)",
-  name_desc: "Name (Z–A)",
-};
-
 const bytesToSize = (bytes: number) => {
   if (bytes === 0) return "0 B";
   const k = 1024;
@@ -127,7 +120,9 @@ const card: Variants = {
 };
 
 export default function HistoryPage() {
+  const locale = useLocale();
   const router = useRouter();
+  const t = useTranslations("HistoryPage");
   const [items, setItems] = useState<HistoryItem[]>([]);
   const [lang, setLang] = useState<string>("en");
   const [query, setQuery] = useState("");
@@ -136,6 +131,14 @@ export default function HistoryPage() {
       (localStorage.getItem("talent-scan:sort") as SortKey)) ||
       "date_desc"
   );
+  const SORT_LABELS: Record<SortKey, string> = {
+    date_desc: t("date_desc"),
+    date_asc: t("date_asc"),
+    score_desc: t("score_desc"),
+    score_asc: t("score_asc"),
+    name_asc: t("name_asc"),
+    name_desc: t("name_desc"),
+  };
 
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [openDeleteAll, setOpenDeleteAll] = useState(false);
@@ -275,11 +278,9 @@ export default function HistoryPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div variants={card} className="mb-8">
             <h1 className="text-3xl lg:text-4xl font-bold text-headline mb-4">
-              Analysis History
+              {t("title")}
             </h1>
-            <p className="text-xl text-body-text">
-              View and manage your saved resume analyses
-            </p>
+            <p className="text-xl text-body-text">{t("subtitle")}</p>
           </motion.div>
 
           <motion.div
@@ -290,25 +291,25 @@ export default function HistoryPage() {
               icon={FileText}
               color="cyan"
               value={stats.total}
-              label="Total Analyses"
+              label={t("totalAnalyses")}
             />
             <KpiCard
               icon={LineChart}
               color="emerald"
               value={`${stats.avg}%`}
-              label="Average Score"
+              label={t("averageScore")}
             />
             <KpiCard
               icon={CalendarDays}
               color="amber"
               value={stats.thisWeek}
-              label="This Week"
+              label={t("thisWeek")}
             />
             <KpiCard
               icon={TrendingUp}
               color="orange"
               value={stats.topCount}
-              label="Top Candidates (≥85)"
+              label={t("topCandidates")}
             />
           </motion.div>
 
@@ -321,7 +322,7 @@ export default function HistoryPage() {
               <Input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search by filename or candidate name..."
+                placeholder={t("searchPlaceholder")}
                 className="w-full rounded-md border border-border bg-surface/60 pl-10"
               />
             </div>
@@ -332,7 +333,7 @@ export default function HistoryPage() {
                 onValueChange={(v: SortKey) => setSortKey(v)}
               >
                 <SelectTrigger className="w-56 rounded-md border-border bg-card">
-                  <SelectValue placeholder="Sort" />
+                  <SelectValue placeholder={t("sortBy")} />
                 </SelectTrigger>
                 <SelectContent className="w-56">
                   {(Object.keys(SORT_LABELS) as SortKey[]).map((key) => (
@@ -349,7 +350,7 @@ export default function HistoryPage() {
                 disabled={items.length === 0}
               >
                 <Trash2 className="h-4 w-4" />
-                Delete All
+                {t("deleteAll")}
               </Button>
             </div>
           </motion.div>
@@ -363,16 +364,17 @@ export default function HistoryPage() {
                 <FileText className="h-10 w-10 text-caption" />
               </div>
               <h3 className="text-xl font-semibold text-headline">
-                No analyses yet
+                {t("noAnalyses")}
               </h3>
               <p className="mt-2 max-w-md text-body-text/80">
-                Upload your first resume to get started.
+                {t("uploadResume")}
               </p>
               <Link
                 href="/upload"
+                locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                 className="mt-6 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-semibold text-primary-foreground hover:bg-primary/90"
               >
-                Upload Resume
+                {t("uploadResume")}
               </Link>
             </motion.div>
           ) : (
@@ -382,7 +384,7 @@ export default function HistoryPage() {
                   variants={card}
                   className="rounded-lg border border-border bg-surface/60 p-6 text-center text-caption"
                 >
-                  No matching analyses.
+                  {t("noMatchingAnalyses")}
                 </motion.div>
               )}
 
@@ -412,10 +414,10 @@ export default function HistoryPage() {
                         <p className="mt-2 text-sm opacity-60 leading-relaxed text-body-text line-clamp-2">
                           {item.multiLanguageData?.[lang]?.summary ||
                             item.summary ||
-                            "No summary available."}
+                            t("noSummary")}
                         </p>
                         <p className="mt-1 text-xs text-caption/70">
-                          Analyzed: {fmtDate(item.analysisDate)}
+                          {t("analyzed")}: {fmtDate(item.analysisDate)}
                         </p>
                       </div>
 
@@ -449,20 +451,22 @@ export default function HistoryPage() {
                               }
                               className="flex items-center gap-2"
                             >
-                              <Eye className="h-4 w-4" /> View
+                              <Eye className="h-4 w-4" /> {t("view")}
                             </DropdownMenuItem>
                             <DropdownMenuItem
                               onClick={() => onDownload(item)}
                               className="flex items-center gap-2"
                             >
-                              <DownloadIcon className="h-4 w-4" /> Download
+                              <DownloadIcon className="h-4 w-4" />{" "}
+                              {t("download")}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
                               onClick={() => setDeleteId(item.id)}
                               className="flex items-center gap-2 text-red-500"
                             >
-                              <Trash2 className="h-4 w-4 text-red-500" /> Delete
+                              <Trash2 className="h-4 w-4 text-red-500" />{" "}
+                              {t("delete")}
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -484,16 +488,17 @@ export default function HistoryPage() {
                 <AlertTriangle className="h-5 w-5" />
               </span>
               <AlertDialogTitle className="text-xl">
-                Delete Analysis
+                {t("deleteAnalysis")}
               </AlertDialogTitle>
             </div>
             <AlertDialogDescription className="text-base">
-              Are you sure you want to delete this analysis? This action cannot
-              be undone.
+              {t("confirmDelete")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="sm:justify-end gap-2">
-            <AlertDialogCancel className="rounded-md">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-md">
+              {t("cancel")}
+            </AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-500 dark:text-white rounded-md"
               onClick={() => {
@@ -501,7 +506,7 @@ export default function HistoryPage() {
                 setDeleteId(null);
               }}
             >
-              Delete
+              {t("delete")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -515,21 +520,22 @@ export default function HistoryPage() {
                 <AlertTriangle className="h-5 w-5" />
               </span>
               <AlertDialogTitle className="text-xl">
-                Delete All Analyses
+                {t("deleteAnalysis")}
               </AlertDialogTitle>
             </div>
             <AlertDialogDescription className="text-base">
-              Are you sure you want to delete all {items.length} analyses? This
-              action cannot be undone.
+              {t("deleteAllConfirm", { count: items.length })}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter className="sm:justify-end gap-2">
-            <AlertDialogCancel className="rounded-md">Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="rounded-md">
+              {t("cancel")}
+            </AlertDialogCancel>
             <AlertDialogAction
               className="bg-red-600 hover:bg-red-500 dark:text-white rounded-md"
               onClick={removeAll}
             >
-              Delete All
+              {t("deleteAll")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
