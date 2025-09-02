@@ -1,0 +1,290 @@
+{
+  "Meta": {
+    "title": "Talent Scan - AI-Powered Resume Analysis & Candidate Screening",
+    "description": "Transform your hiring process with AI. Upload resumes and get instant, comprehensive candidate insights, skills assessment, and hiring recommendations.",
+    "appTitle": "Talent Scan",
+    "siteName": "Talent Scan",
+    "ogAlt": "Talent Scan - AI-Powered Resume Analysis & Candidate Screening",
+    "publisher": "Talent Scan",
+    "keywords": [
+      "AI resume analysis",
+      "candidate screening",
+      "hiring tool",
+      "resume parser",
+      "recruitment AI",
+      "HR technology",
+      "talent acquisition",
+      "resume screening",
+      "candidate assessment",
+      "rohan shakya"
+    ],
+    "orgDescription": "AI-powered resume analysis platform for modern recruitment.",
+    "softwareName": "Talent Scan",
+    "softwareAltName": "Talent Scan Resume Analyzer",
+    "softwareDescription": "AI-Powered Resume Analysis & Candidate Screening Tool with instant insights and skills assessment.",
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Resume Analysis",
+      "Human Resources",
+      "Recruitment Technology",
+      "Candidate Screening"
+    ],
+    "featureList": [
+      "AI-powered resume analysis",
+      "Instant candidate insights",
+      "Skills assessment and evaluation",
+      "Hiring recommendations",
+      "PDF resume parsing",
+      "Candidate scoring and ranking",
+      "Export analysis reports",
+      "Privacy-focused local processing"
+    ]
+  },
+  "UploadMeta": {
+    "uploadTitle": "Upload Resume for AI Analysis | Talent Scan",
+    "uploadDescription": "Upload your resume and get instant, AI-powered analysis: skills extraction, experience scoring, culture-fit signals, strengths, risks, and actionable hiring recommendations.",
+    "uploadKeywords": [
+      "resume analysis",
+      "AI resume analyzer",
+      "candidate insights",
+      "skills assessment",
+      "talent intelligence",
+      "hiring recommendations",
+      "ATS parsing",
+      "resume parser",
+      "talent scan",
+      "HR tech",
+      "recruiting automation"
+    ],
+    "ogAlt": "Talent Scan - Upload Resume for AI Analysis",
+    "publisher": "Talent Scan"
+  },
+  "LearnMoreMeta": {
+    "pageTitle": "About Talent Scan – AI-Powered Resume Analysis Platform | Talent Scan",
+    "pageDescription": "Learn how Talent Scan transforms hiring with AI. Parse resumes, extract skills, score experience and culture fit, flag risks, and generate actionable recommendations for faster, data-driven decisions.",
+    "pageKeywords": [
+      "about Talent Scan",
+      "AI hiring platform",
+      "resume analysis",
+      "ATS parser",
+      "candidate scoring",
+      "talent intelligence",
+      "recruiting analytics",
+      "skills extraction",
+      "culture fit analysis",
+      "HR technology"
+    ],
+    "ogAlt": "Talent Scan — About the Platform",
+    "publisher": "Talent Scan"
+  },
+  "HistoryMeta": {
+    "pageTitle": "Analysis History - Talent Scan",
+    "pageDescription": "Review and manage your AI resume analysis history. Reopen reports, compare scores, track candidates, and export insights for compliant, data-driven hiring decisions.",
+    "pageKeywords": [
+      "analysis history",
+      "resume analysis history",
+      "candidate reports",
+      "hiring analytics",
+      "talent intelligence",
+      "ATS insights",
+      "HR audit trail",
+      "compare candidates",
+      "saved evaluations",
+      "AI recruiting analytics"
+    ],
+    "ogAlt": "Talent Scan — Analysis History",
+    "publisher": "Talent Scan"
+  },
+  "AnalysisMeta": {
+    "pageTitle": "Analysis Results - Talent Scan",
+    "pageDescription": "View AI-powered resume analysis results with overall match score, skill breakdowns, strengths, risks, and actionable hiring recommendations.",
+    "pageKeywords": [
+      "analysis results",
+      "resume analysis report",
+      "AI resume analyzer",
+      "candidate evaluation",
+      "skills breakdown",
+      "culture fit score",
+      "ATS parsing",
+      "hiring insights",
+      "recruiting analytics",
+      "talent intelligence"
+    ],
+    "ogAlt": "Talent Scan — Analysis Results",
+    "publisher": "Talent Scan"
+  },
+  "Header": {
+    "brand": "Talent Scan",
+    "openMenu": "Open menu",
+    "home": "Home",
+    "homeUrl": "/",
+    "uploadResume": "Upload Resume",
+    "uploadResumeUrl": "/upload",
+    "history": "History",
+    "historyUrl": "/history",
+    "uploadResumeAria": "Go to Upload Resume",
+    "historyAria": "Go to History"
+  },
+  "Languages": {
+    "en": "English",
+    "de": "German",
+    "fr": "French"
+  },
+  "Footer": {
+    "talentScan": "Talent Scan",
+    "aiPoweredHiring": "AI-Powered Hiring Intelligence",
+    "recruitmentDescription": "Transform your recruitment process with advanced AI technology. Get instant, comprehensive candidate insights and make better hiring decisions faster.",
+    "product": "Product",
+    "features": "Features",
+    "benefits": "Benefits",
+    "howItWorks": "How It Works",
+    "application": "Application",
+    "uploadResume": "Upload Resume",
+    "analysisHistory": "Analysis History",
+    "aboutUs": "About Us",
+    "help": "Help",
+    "faq": "FAQ",
+    "getStarted": "Get Started",
+    "backToTop": "Back to top"
+  },
+  "Hero": {
+    "title": "Transform Your Hiring Process with AI",
+    "subtitle": "Get instant, comprehensive candidate insights with our advanced AI-powered resume analysis platform.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "Learn More"
+  },
+  "Highlights": {
+    "title": "Project Highlights",
+    "subtitle": "Key features and capabilities of the Talent Scan platform.",
+    "cards": {
+      "ai": {
+        "title": "AI-Powered Analysis",
+        "desc": "Advanced machine learning evaluates resumes across 50+ criteria for comprehensive insights."
+      },
+      "privacy": {
+        "title": "Privacy-First Design",
+        "desc": "All processing happens locally in your browser. No resume data is stored on external servers."
+      },
+      "multiLang": {
+        "title": "Multi-language Support",
+        "desc": "Available in English, German, and French, with more languages planned."
+      }
+    }
+  },
+  "Benefits": {
+    "title": "Unlock Real Hiring Advantages",
+    "subtitle": "Elevate recruitment with AI-powered insights for faster, smarter decisions.",
+    "items": {
+      "saveTime": {
+        "title": "Save Time",
+        "desc": "Analyze resumes in seconds instead of hours."
+      },
+      "betterDecisions": {
+        "title": "Better Decisions",
+        "desc": "AI-powered insights help you make informed hiring choices."
+      },
+      "reduceBias": {
+        "title": "Reduce Bias",
+        "desc": "Objective analysis based on skills and experience."
+      },
+      "scaleHiring": {
+        "title": "Scale Hiring",
+        "desc": "Process hundreds of resumes efficiently."
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "How It Works",
+    "subtitle": "Get started with Talent Scan in just three simple steps.",
+    "steps": {
+      "upload": {
+        "title": "Upload Resume",
+        "desc": "Simply drag and drop a PDF resume or click to select."
+      },
+      "analysis": {
+        "title": "AI Analysis",
+        "desc": "Our advanced AI analyzes skills, experience, and fit."
+      },
+      "insights": {
+        "title": "Get Insights",
+        "desc": "Receive detailed analysis with scores and recommendations."
+      }
+    }
+  },
+  "FAQ": {
+    "q1": "How accurate is the AI analysis?",
+    "a1": "Our AI is trained on thousands of resumes and job descriptions, achieving high accuracy in skills identification and experience evaluation.",
+    "q2": "Is my data secure and private?",
+    "a2": "All resume processing happens locally in your browser. We do not store resume content on our servers.",
+    "q3": "What file formats are supported?",
+    "a3": "We currently support PDF files up to 5MB. Additional formats are planned.",
+    "q4": "How much does Talent Scan cost?",
+    "a4": "Talent Scan is currently free to use to help organizations of all sizes."
+  },
+  "GetStarted": {
+    "title": "Ready to Get Started?",
+    "subtitle": "Upload your first resume and experience the power of AI-driven analysis.",
+    "primaryCta": "Start Analyzing",
+    "secondaryCta": "Learn More"
+  },
+  "UploadPage": {
+    "title": "Upload Resume",
+    "description": "Upload a PDF resume to get instant AI-powered analysis and insights.",
+    "analysisComplete": "Analysis Complete",
+    "dragAndDrop": "Drag & drop resume here, or click to select",
+    "pdfLimit": "PDF files only (max 5MB)",
+    "parsingDocument": "Parsing Document",
+    "aiAnalysis": "AI Analysis",
+    "generatingReport": "Generating Report",
+    "didYouKnow": "Did you know?",
+    "didYouKnowText": "Our AI analyzes over 50 different criteria to provide comprehensive candidate insights.",
+    "cancel": "Cancel",
+    "fileInfo": "KB • 1 Pages",
+    "uploadSuccessful": "Upload successful",
+    "overallScore": "Overall Match Score",
+    "technicalSkills": "Technical Skills",
+    "experienceLevel": "Experience Level",
+    "communication": "Communication",
+    "cultureFit": "Culture Fit",
+    "excellent": "Excellent",
+    "keyStrengths": "Key Strengths",
+    "areasForImprovement": "Areas for Improvement",
+    "skillsIdentified": "Skills Identified",
+    "experienceSummary": "Experience Summary",
+    "yearsOfExperience": "Years of Experience",
+    "years": "years",
+    "previousCompanies": "Previous Companies",
+    "hiringRecommendations": "Hiring Recommendations",
+    "potentialRedFlags": "Potential Red Flags",
+    "analysingResume": "Analyzing Resume",
+    "complete": "Complete"
+  },
+  "HistoryPage": {
+    "title": "Analysis History",
+    "subtitle": "View and manage your saved resume analyses",
+    "noAnalyses": "No analyses yet",
+    "uploadResume": "Upload Resume",
+    "totalAnalyses": "Total Analyses",
+    "averageScore": "Average Score",
+    "thisWeek": "This Week",
+    "topCandidates": "Top Candidates (≥85)",
+    "searchPlaceholder": "Search by filename or candidate name...",
+    "noMatchingAnalyses": "No matching analyses.",
+    "noSummary": "No summary available.",
+    "analyzed": "Analyzed",
+    "view": "View",
+    "download": "Download",
+    "deleteAll": "Delete All",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "deleteAnalysis": "Delete Analysis",
+    "confirmDelete": "Are you sure you want to delete this analysis? This action cannot be undone.",
+    "deleteAllConfirm": "Are you sure you want to delete all {count} analyses? This action cannot be undone.",
+    "date_desc": "Newest First",
+    "date_asc": "Oldest First",
+    "score_desc": "Highest First",
+    "score_asc": "Lowest First",
+    "name_asc": "Name (A–Z)",
+    "name_desc": "Name (Z–A)"
+  }
+}

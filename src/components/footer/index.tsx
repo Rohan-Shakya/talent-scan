@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   TrendingUpIcon,
   ShieldIcon,
@@ -18,6 +18,8 @@ import {
   type Transition,
 } from "framer-motion";
 import { ScrollTopButton } from "./scroll-top-button";
+import { useLocale, useTranslations } from "next-intl";
+import { DEFAULT_LOCALE } from "@/lib/const";
 
 const easeOut: Transition["ease"] = [0.16, 1, 0.3, 1];
 
@@ -50,6 +52,9 @@ const itemHover: Variants = {
 };
 
 export const Footer = () => {
+  const locale = useLocale();
+  const t = useTranslations("Footer");
+
   return (
     <MotionConfig reducedMotion="user">
       <motion.footer
@@ -68,28 +73,26 @@ export const Footer = () => {
                     className="text-3xl font-bold text-primary dark:text-white"
                     variants={fadeUp}
                   >
-                    Talent Scan
+                    {t("talentScan")}
                   </motion.p>
                   <motion.p
                     className="text-sm text-primary/80 dark:text-white/80 mt-1 font-medium"
                     variants={fadeUp}
                   >
-                    AI-Powered Hiring Intelligence
+                    {t("aiPoweredHiring")}
                   </motion.p>
                 </div>
                 <motion.p
                   className="text-body-text leading-relaxed mb-6 max-w-md"
                   variants={fadeUp}
                 >
-                  Transform your recruitment process with advanced AI
-                  technology. Get instant, comprehensive candidate insights and
-                  make better hiring decisions faster.
+                  {t("recruitmentDescription")}
                 </motion.p>
               </motion.div>
 
               <motion.div variants={fadeUp}>
                 <h3 className="text-headline font-semibold mb-4 text-sm uppercase tracking-wider">
-                  Product
+                  {t("product")}
                 </h3>
                 <ul className="space-y-3">
                   <motion.li
@@ -102,7 +105,7 @@ export const Footer = () => {
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <TrendingUpIcon className="w-4 h-4" />
                       </span>
-                      <span>Features</span>
+                      <span>{t("features")}</span>
                     </button>
                   </motion.li>
                   <motion.li
@@ -115,7 +118,7 @@ export const Footer = () => {
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <ShieldIcon className="w-4 h-4" />
                       </span>
-                      <span>Benefits</span>
+                      <span>{t("benefits")}</span>
                     </button>
                   </motion.li>
                   <motion.li
@@ -128,7 +131,7 @@ export const Footer = () => {
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <GlobeIcon className="w-4 h-4" />
                       </span>
-                      <span>How It Works</span>
+                      <span>{t("howItWorks")}</span>
                     </button>
                   </motion.li>
                 </ul>
@@ -136,7 +139,7 @@ export const Footer = () => {
 
               <motion.div variants={fadeUp}>
                 <h3 className="text-headline font-semibold mb-4 text-sm uppercase tracking-wider">
-                  Application
+                  {t("application")}
                 </h3>
                 <ul className="space-y-3">
                   <motion.li
@@ -147,12 +150,13 @@ export const Footer = () => {
                   >
                     <Link
                       href="/upload"
+                      locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                       className="group flex items-center space-x-2 text-body-text hover:text-primary transition-colors text-sm"
                     >
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <CloudUploadIcon className="w-4 h-4" />
                       </span>
-                      <span>Upload Resume</span>
+                      <span>{t("uploadResume")}</span>
                     </Link>
                   </motion.li>
                   <motion.li
@@ -163,12 +167,13 @@ export const Footer = () => {
                   >
                     <Link
                       href="/history"
+                      locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                       className="group flex items-center space-x-2 text-body-text hover:text-primary transition-colors text-sm"
                     >
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <HistoryIcon className="w-4 h-4" />
                       </span>
-                      <span>Analysis History</span>
+                      <span>{t("analysisHistory")}</span>
                     </Link>
                   </motion.li>
                   <motion.li
@@ -179,12 +184,13 @@ export const Footer = () => {
                   >
                     <Link
                       href="/learn-more"
+                      locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                       className="group flex items-center space-x-2 text-body-text hover:text-primary transition-colors text-sm"
                     >
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <FileIcon className="w-4 h-4" />
                       </span>
-                      <span>About Us</span>
+                      <span>{t("aboutUs")}</span>
                     </Link>
                   </motion.li>
                 </ul>
@@ -192,7 +198,7 @@ export const Footer = () => {
 
               <motion.div variants={fadeUp}>
                 <h3 className="text-headline font-semibold mb-4 text-sm uppercase tracking-wider">
-                  Help
+                  {t("help")}
                 </h3>
                 <ul className="space-y-3">
                   <motion.li
@@ -205,7 +211,7 @@ export const Footer = () => {
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <CircleQuestionMarkIcon className="w-4 h-4" />
                       </span>
-                      <span>FAQ</span>
+                      <span>{t("faq")}</span>
                     </button>
                   </motion.li>
                   <motion.li
@@ -218,7 +224,7 @@ export const Footer = () => {
                       <span className="text-caption group-hover:text-primary transition-colors">
                         <CirclePlayIcon className="w-4 h-4" />
                       </span>
-                      <span>Get Started</span>
+                      <span>{t("getStarted")}</span>
                     </button>
                   </motion.li>
                 </ul>
@@ -237,7 +243,7 @@ export const Footer = () => {
                   <span>© 2025 Talent Scan</span>
                   <span className="text-caption/60">•</span>
                   <span className="text-caption/80">
-                    AI-Powered Hiring Intelligence
+                    {t("aiPoweredHiring")}
                   </span>
                 </div>
               </div>

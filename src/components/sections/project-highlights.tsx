@@ -2,6 +2,8 @@
 
 import { ShieldIcon, TrendingUpIcon, ZapIcon } from "lucide-react";
 import { motion, type Variants, cubicBezier } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { useMemo } from "react";
 
 const EASE = cubicBezier(0.16, 1, 0.3, 1);
 
@@ -29,31 +31,36 @@ const cardIn: Variants = {
   },
 };
 
-type Card = {
+type CardView = {
   title: string;
   desc: string;
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
-const CARDS: Card[] = [
-  {
-    title: "AI-Powered Analysis",
-    desc: "Advanced machine learning algorithms analyze resumes across 50+ criteria for comprehensive insights.",
-    Icon: TrendingUpIcon,
-  },
-  {
-    title: "Privacy-First Design",
-    desc: "All processing happens locally in your browser. No resume data is stored on external servers.",
-    Icon: ZapIcon,
-  },
-  {
-    title: "Multi-Language Support",
-    desc: "Available in English, Arabic, Spanish, and French, with more languages planned.",
-    Icon: ShieldIcon,
-  },
-];
+type CardKey = "ai" | "privacy" | "multiLang";
+
+const CARD_DEFS: Record<
+  CardKey,
+  React.ComponentType<React.SVGProps<SVGSVGElement>>
+> = {
+  ai: TrendingUpIcon,
+  privacy: ZapIcon,
+  multiLang: ShieldIcon,
+};
 
 export const ProjectHighlights = () => {
+  const t = useTranslations("Highlights");
+
+  const cards: CardView[] = useMemo(
+    () =>
+      (Object.keys(CARD_DEFS) as CardKey[]).map((key) => ({
+        title: t(`cards.${key}.title`),
+        desc: t(`cards.${key}.desc`),
+        Icon: CARD_DEFS[key],
+      })),
+    [t]
+  );
+
   return (
     <motion.section
       id="features"
@@ -83,18 +90,18 @@ export const ProjectHighlights = () => {
               variants={fadeUp}
               className="text-3xl lg:text-4xl font-bold text-headline mb-4"
             >
-              Project Highlights
+              {t("title")}
             </motion.h2>
             <motion.p
               variants={fadeUp}
               className="text-xl text-body-text max-w-2xl mx-auto"
             >
-              Key features and capabilities of the Talent Scan platform.
+              {t("subtitle")}
             </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {CARDS.map((c, i) => (
+            {cards.map((c, i) => (
               <MotionCard key={c.title} i={i} {...c} />
             ))}
           </div>
@@ -104,7 +111,7 @@ export const ProjectHighlights = () => {
   );
 };
 
-function MotionCard({ title, desc, Icon, i }: Card & { i: number }) {
+function MotionCard({ title, desc, Icon, i }: CardView & { i: number }) {
   return (
     <motion.div
       variants={cardIn}

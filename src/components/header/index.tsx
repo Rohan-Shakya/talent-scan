@@ -3,36 +3,46 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useLocale, useTranslations } from "next-intl";
 import { Menu } from "lucide-react";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LocaleSwitcher } from "./locale-switcher";
 import { MobileMenu, type NavItem } from "./mobile-menu";
-
-const NAV = [
-  { href: "/", label: "Home", aria: "Go to Home" },
-  { href: "/upload", label: "Upload Resume", aria: "Go to Upload Resume" },
-  { href: "/history", label: "History", aria: "Go to History" },
-] as const satisfies ReadonlyArray<NavItem>;
+import { DEFAULT_LOCALE } from "@/lib/const";
 
 export const Header = () => {
+  const locale = useLocale();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Header");
+
+  const NAV = [
+    { href: t("homeUrl"), label: t("home"), aria: t("home") },
+    {
+      href: t("uploadResumeUrl"),
+      label: t("uploadResume"),
+      aria: t("uploadResumeAria"),
+    },
+    { href: t("historyUrl"), label: t("history"), aria: t("historyAria") },
+  ] as const satisfies ReadonlyArray<NavItem>;
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background border-b border-border shadow-sm backdrop-blur-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between">
-        <Link href="/" aria-label="Talent Scan">
+        <Link
+          href="/"
+          locale={locale !== DEFAULT_LOCALE ? locale : undefined}
+          aria-label={t("brand")}
+        >
           <h1 className="text-2xl font-bold text-primary dark:text-white tracking-tight">
-            Talent Scan
+            {t("brand")}
           </h1>
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
           {NAV.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname?.startsWith(item.href);
+            const active = item.href === pathname;
+
             return (
               <Link
                 key={item.href}
@@ -56,7 +66,7 @@ export const Header = () => {
           <LocaleSwitcher className="hidden md:flex" />
           <button
             className="md:hidden p-2 rounded-md focus:outline-none"
-            aria-label="Open menu"
+            aria-label={t("openMenu")}
             onClick={() => setOpen(true)}
           >
             <Menu className="h-6 w-6" />
@@ -68,7 +78,7 @@ export const Header = () => {
         open={open}
         onClose={() => setOpen(false)}
         nav={NAV}
-        brand="Talent Scan"
+        brand={t("brand")}
       />
     </header>
   );

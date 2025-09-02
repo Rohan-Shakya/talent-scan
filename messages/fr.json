@@ -1,0 +1,290 @@
+{
+  "Meta": {
+    "title": "Talent Scan – Analyse de CV et présélection de candidats par IA",
+    "description": "Réinventez votre recrutement avec l’IA. Téléversez des CV et obtenez instantanément des informations complètes, une évaluation des compétences et des recommandations d’embauche.",
+    "appTitle": "Talent Scan",
+    "siteName": "Talent Scan",
+    "ogAlt": "Talent Scan – Analyse de CV et présélection de candidats par IA",
+    "publisher": "Talent Scan",
+    "keywords": [
+      "analyse de CV par IA",
+      "présélection de candidats",
+      "outil de recrutement",
+      "parseur de CV",
+      "IA pour le recrutement",
+      "technologie RH",
+      "acquisition de talents",
+      "filtrage de CV",
+      "évaluation des candidats",
+      "rohan shakya"
+    ],
+    "orgDescription": "Plateforme d’analyse de CV par IA pour un recrutement moderne.",
+    "softwareName": "Talent Scan",
+    "softwareAltName": "Analyseur de CV Talent Scan",
+    "softwareDescription": "Outil d’analyse de CV et d’évaluation des candidats par IA, avec insights instantanés et évaluation des compétences.",
+    "knowsAbout": [
+      "Intelligence artificielle",
+      "Analyse de CV",
+      "Ressources humaines",
+      "Technologie de recrutement",
+      "Présélection de candidats"
+    ],
+    "featureList": [
+      "Analyse de CV par IA",
+      "Insights candidats instantanés",
+      "Évaluation des compétences",
+      "Recommandations d’embauche",
+      "Parsing PDF de CV",
+      "Score et classement des candidats",
+      "Export des rapports d’analyse",
+      "Traitement local respectueux de la vie privée"
+    ]
+  },
+  "UploadMeta": {
+    "uploadTitle": "Télécharger le CV pour analyse IA | Talent Scan",
+    "uploadDescription": "Téléchargez votre CV et obtenez une analyse instantanée alimentée par l'IA : extraction des compétences, évaluation de l'expérience, signaux d'adéquation culturelle, forces, risques et recommandations de recrutement exploitables.",
+    "uploadKeywords": [
+      "analyse de CV",
+      "analyseur de CV IA",
+      "informations sur les candidats",
+      "évaluation des compétences",
+      "intelligence des talents",
+      "recommandations de recrutement",
+      "parsing ATS",
+      "analyseur de CV",
+      "scan de talents",
+      "technologie RH",
+      "automatisation du recrutement"
+    ],
+    "ogAlt": "Talent Scan - Télécharger le CV pour analyse IA",
+    "publisher": "Talent Scan"
+  },
+  "LearnMoreMeta": {
+    "pageTitle": "À propos de Talent Scan – Plateforme d'analyse de CV alimentée par l'IA | Talent Scan",
+    "pageDescription": "Découvrez comment Talent Scan transforme le recrutement avec l'IA. Analysez les CV, extrayez les compétences, évaluez l'expérience et l'adéquation culturelle, identifiez les risques et générez des recommandations exploitables pour des décisions plus rapides et basées sur les données.",
+    "pageKeywords": [
+      "à propos de Talent Scan",
+      "plateforme de recrutement IA",
+      "analyse de CV",
+      "parser ATS",
+      "évaluation des candidats",
+      "intelligence des talents",
+      "analyse du recrutement",
+      "extraction des compétences",
+      "analyse de l'adéquation culturelle",
+      "technologie RH"
+    ],
+    "ogAlt": "Talent Scan — À propos de la plateforme",
+    "publisher": "Talent Scan"
+  },
+  "HistoryMeta": {
+    "pageTitle": "Historique des analyses - Talent Scan",
+    "pageDescription": "Examinez et gérez l'historique de vos analyses de CV par IA. Rouvrez les rapports, comparez les scores, suivez les candidats et exportez des informations pour des décisions d'embauche conformes et basées sur les données.",
+    "pageKeywords": [
+      "historique des analyses",
+      "historique des analyses de CV",
+      "rapports de candidats",
+      "analyse des embauches",
+      "intelligence des talents",
+      "aperçus ATS",
+      "piste d'audit RH",
+      "comparer les candidats",
+      "évaluations enregistrées",
+      "analyse du recrutement par IA"
+    ],
+    "ogAlt": "Talent Scan — Historique des analyses",
+    "publisher": "Talent Scan"
+  },
+  "AnalysisMeta": {
+    "pageTitle": "Résultats de l'analyse - Talent Scan",
+    "pageDescription": "Consultez les résultats de l'analyse de CV alimentée par l'IA avec un score global, une répartition des compétences, des forces, des risques et des recommandations exploitables pour l'embauche.",
+    "pageKeywords": [
+      "résultats de l'analyse",
+      "rapport d'analyse de CV",
+      "analyseur de CV IA",
+      "évaluation des candidats",
+      "répartition des compétences",
+      "score d'adéquation culturelle",
+      "ATS parsing",
+      "analyses d'embauche",
+      "analyse du recrutement",
+      "intelligence des talents"
+    ],
+    "ogAlt": "Talent Scan — Résultats de l'analyse",
+    "publisher": "Talent Scan"
+  },
+  "Header": {
+    "brand": "Talent Scan",
+    "openMenu": "Ouvrir le menu",
+    "home": "Accueil",
+    "homeUrl": "/fr",
+    "uploadResume": "Télécharger le CV",
+    "uploadResumeUrl": "/fr/telecharger",
+    "history": "Histore",
+    "historyUrl": "/fr/histoire",
+    "uploadResumeAria": "Aller à Télécharger le CV",
+    "historyAria": "Aller à Historique"
+  },
+  "Languages": {
+    "en": "Anglais",
+    "de": "Allemand",
+    "fr": "Français"
+  },
+  "Footer": {
+    "talentScan": "Talent Scan",
+    "aiPoweredHiring": "Intelligence d'embauche alimentée par l'IA",
+    "recruitmentDescription": "Transformez votre processus de recrutement avec la technologie avancée de l'IA. Obtenez instantanément des informations complètes sur les candidats et prenez des décisions d'embauche plus rapides.",
+    "product": "Produit",
+    "features": "Fonctionnalités",
+    "benefits": "Avantages",
+    "howItWorks": "Comment ça marche",
+    "application": "Application",
+    "uploadResume": "Télécharger un CV",
+    "analysisHistory": "Historique des analyses",
+    "aboutUs": "À propos de nous",
+    "help": "Aide",
+    "faq": "FAQ",
+    "getStarted": "Commencer",
+    "backToTop": "Retour en haut"
+  },
+  "Hero": {
+    "title": "Réinventez votre recrutement grâce à l’IA",
+    "subtitle": "Obtenez instantanément des insights complets sur les candidats avec notre plateforme avancée d’analyse de CV propulsée par l’IA.",
+    "ctaPrimary": "Commencer",
+    "ctaSecondary": "En savoir plus"
+  },
+  "Highlights": {
+    "title": "Points forts du projet",
+    "subtitle": "Fonctionnalités et capacités clés de la plateforme Talent Scan.",
+    "cards": {
+      "ai": {
+        "title": "Analyse propulsée par l’IA",
+        "desc": "L’apprentissage automatique avancé évalue les CV selon plus de 50 critères pour des insights complets."
+      },
+      "privacy": {
+        "title": "Conception axée sur la confidentialité",
+        "desc": "Tout le traitement s’effectue localement dans votre navigateur. Aucune donnée de CV n’est stockée sur des serveurs externes."
+      },
+      "multiLang": {
+        "title": "Prise en charge multilingue",
+        "desc": "Disponible en anglais, allemand et français, avec d’autres langues à venir."
+      }
+    }
+  },
+  "Benefits": {
+    "title": "Débloquez de vrais avantages en recrutement",
+    "subtitle": "Accélérez le recrutement grâce à des insights alimentés par l’IA pour des décisions plus rapides et plus avisées.",
+    "items": {
+      "saveTime": {
+        "title": "Gagnez du temps",
+        "desc": "Analysez les CV en quelques secondes plutôt qu’en heures."
+      },
+      "betterDecisions": {
+        "title": "De meilleures décisions",
+        "desc": "Des insights propulsés par l’IA pour des choix d’embauche éclairés."
+      },
+      "reduceBias": {
+        "title": "Réduisez les biais",
+        "desc": "Analyse objective basée sur les compétences et l’expérience."
+      },
+      "scaleHiring": {
+        "title": "Passez à l’échelle",
+        "desc": "Traitez des centaines de CV efficacement."
+      }
+    }
+  },
+  "HowItWorks": {
+    "title": "Comment ça marche",
+    "subtitle": "Commencez avec Talent Scan en trois étapes simples.",
+    "steps": {
+      "upload": {
+        "title": "Téléverser le CV",
+        "desc": "Glissez-déposez un CV au format PDF ou cliquez pour le sélectionner."
+      },
+      "analysis": {
+        "title": "Analyse par IA",
+        "desc": "Notre IA avancée analyse les compétences, l’expérience et l’adéquation."
+      },
+      "insights": {
+        "title": "Recevoir des insights",
+        "desc": "Recevez une analyse détaillée avec des scores et des recommandations."
+      }
+    }
+  },
+  "FAQ": {
+    "q1": "Quelle est la précision de l’analyse IA ?",
+    "a1": "Notre IA est entraînée sur des milliers de CV et d’offres, avec une grande précision pour identifier les compétences et évaluer l’expérience.",
+    "q2": "Mes données sont-elles sécurisées et privées ?",
+    "a2": "Tout le traitement s’effectue localement dans votre navigateur. Nous ne stockons pas le contenu des CV sur nos serveurs.",
+    "q3": "Quels formats de fichiers sont pris en charge ?",
+    "a3": "Nous prenons actuellement en charge les fichiers PDF jusqu’à 5 Mo. D’autres formats sont prévus.",
+    "q4": "Quel est le coût de Talent Scan ?",
+    "a4": "Talent Scan est actuellement gratuit pour aider les organisations de toutes tailles."
+  },
+  "GetStarted": {
+    "title": "Prêt à commencer ?",
+    "subtitle": "Télécharge ton premier CV et découvre la puissance de l'analyse pilotée par IA.",
+    "primaryCta": "Commencer l'analyse",
+    "secondaryCta": "En savoir plus"
+  },
+  "UploadPage": {
+    "title": "Télécharger le CV",
+    "description": "Téléchargez un CV PDF pour obtenir une analyse et des informations instantanées alimentées par l'IA.",
+    "analysisComplete": "Analyse terminée",
+    "dragAndDrop": "Glissez-déposez le CV ici ou cliquez pour sélectionner",
+    "pdfLimit": "Fichiers PDF uniquement (max 5 Mo)",
+    "parsingDocument": "Analyse du document",
+    "aiAnalysis": "Analyse par IA",
+    "generatingReport": "Génération du rapport",
+    "didYouKnow": "Le saviez-vous ?",
+    "didYouKnowText": "Notre IA analyse plus de 50 critères différents pour fournir des informations complètes sur le candidat.",
+    "cancel": "Annuler",
+    "fileInfo": "Ko • 1 Pages",
+    "uploadSuccessful": "Téléchargement réussi",
+    "overallScore": "Score global",
+    "technicalSkills": "Compétences techniques",
+    "experienceLevel": "Niveau d'expérience",
+    "communication": "Communication",
+    "cultureFit": "Adaptation à la culture",
+    "excellent": "Excellent",
+    "keyStrengths": "Forces clés",
+    "areasForImprovement": "Axes d'amélioration",
+    "skillsIdentified": "Compétences identifiées",
+    "experienceSummary": "Résumé de l'expérience",
+    "yearsOfExperience": "Années d'expérience",
+    "years": "ans",
+    "previousCompanies": "Anciennes entreprises",
+    "hiringRecommendations": "Recommandations de recrutement",
+    "potentialRedFlags": "Signaux d'alarme potentiels",
+    "analysingResume": "Analyse du CV",
+    "complete": "Complet"
+  },
+  "HistoryPage": {
+    "title": "Historique des analyses",
+    "subtitle": "Voir et gérer vos analyses de CV enregistrées",
+    "noAnalyses": "Aucune analyse pour l'instant",
+    "uploadResume": "Télécharger le CV",
+    "totalAnalyses": "Analyses totales",
+    "averageScore": "Score moyen",
+    "thisWeek": "Cette semaine",
+    "topCandidates": "Top candidats (≥85)",
+    "searchPlaceholder": "Rechercher par nom de fichier ou nom du candidat...",
+    "noMatchingAnalyses": "Aucune analyse correspondante.",
+    "noSummary": "Aucune synthèse disponible.",
+    "analyzed": "Analysé",
+    "view": "Voir",
+    "download": "Télécharger",
+    "deleteAll": "Supprimer tout",
+    "delete": "Supprimer",
+    "cancel": "Annuler",
+    "deleteAnalysis": "Supprimer l'analyse",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette analyse ? Cette action est irréversible.",
+    "deleteAllConfirm": "Êtes-vous sûr de vouloir supprimer toutes les {count} analyses ? Cette action est irréversible.",
+    "date_desc": "Plus récent",
+    "date_asc": "Plus ancien",
+    "score_desc": "Le plus élevé",
+    "score_asc": "Le plus bas",
+    "name_asc": "Nom (A–Z)",
+    "name_desc": "Nom (Z–A)"
+  }
+}

@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRightIcon } from "lucide-react";
 import {
   motion,
   MotionConfig,
@@ -9,10 +7,15 @@ import {
   type Variants,
   type Transition,
 } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
+import { ArrowRightIcon } from "lucide-react";
+import { Link } from "@/i18n/navigation";
+import { DEFAULT_LOCALE } from "@/lib/const";
 
 export const GetStarted = () => {
+  const locale = useLocale();
   const prefersReduced = useReducedMotion();
-
+  const t = useTranslations("GetStarted");
   const easeOut: Transition["ease"] = [0.16, 1, 0.3, 1];
   const easeInOut: Transition["ease"] = [0.45, 0, 0.55, 1];
 
@@ -287,15 +290,14 @@ export const GetStarted = () => {
               variants={fadeUp}
               className="mb-4 leading-tight text-2xl font-bold text-headline sm:mb-6 sm:text-3xl lg:text-4xl"
             >
-              Ready to Get Started?
+              {t("title")}
             </motion.h2>
 
             <motion.p
               variants={fadeUp}
               className="mb-6 px-2 text-lg leading-relaxed text-body-text sm:mb-8 sm:text-xl"
             >
-              Upload your first resume and experience the power of AI-driven
-              analysis.
+              {t("subtitle")}
             </motion.p>
 
             <motion.div
@@ -303,7 +305,8 @@ export const GetStarted = () => {
               className="mx-auto flex max-w-md flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
             >
               <Link
-                href="/upload"
+                href={"/upload"}
+                locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                 className="inline-flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-semibold text-primary-foreground shadow-custom-base transition-all duration-base hover:shadow-custom-lg active:bg-primary-active sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
               >
                 <motion.span
@@ -319,12 +322,13 @@ export const GetStarted = () => {
                   whileTap={{ scale: 0.98 }}
                   transition={{ ease: easeOut, duration: 0.2 }}
                 >
-                  Start Analyzing
+                  {t("primaryCta")}
                 </motion.span>
               </Link>
 
               <Link
-                href="/learn-more"
+                href={"/learn-more"}
+                locale={locale !== DEFAULT_LOCALE ? locale : undefined}
                 className="inline-flex w-full items-center justify-center rounded-lg border-2 border-primary bg-transparent px-6 py-3 text-base font-semibold text-primary transition-all duration-base hover:bg-primary hover:text-primary-foreground active:bg-primary-active sm:w-auto sm:px-8 sm:py-4 sm:text-lg"
               >
                 <motion.span
@@ -332,7 +336,7 @@ export const GetStarted = () => {
                   whileTap={{ scale: 0.98 }}
                   transition={{ ease: easeOut, duration: 0.2 }}
                 >
-                  Learn More
+                  {t("secondaryCta")}
                 </motion.span>
               </Link>
             </motion.div>

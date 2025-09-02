@@ -3,3 +3,5 @@ export const BASE_URL =
 
 export const AUTHOR_URL =
   process.env.NEXT_PUBLIC_AUTHOR_URL || "https://www.shakyarohan.com.np";
+
+export const DEFAULT_LOCALE = "en";
